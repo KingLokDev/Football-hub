@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-Hans-HK">
+<head>
+  <meta charset="UTF-8">
+  <title>Yahoo 體育 - 港超聯</title>
+  	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  	<meta name="description" content="撐本地足球，提供港超聯直播、賽事精華、球會簡介及相關新聞。">
+    <meta name="keywords" content="港超聯, 港超聯直播, 賽事精華, 南華, 東方, 傑志, 飛馬, 南區, 流浪, 銀牌, 本地波, 香港足球, 香港隊">
+    <link rel="shortcut icon" href="https://s.yimg.com/rz/l/favicon.ico">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//static.tumblr.com/3yh6fjw/cnlocbhkl/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="//static.tumblr.com/3yh6fjw/YyTocbhkg/bootstrap-theme.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script type="text/javascript" src="//static.tumblr.com/vexeq8y/tJWnlzwcq/jquery.js"></script>
+  <script src="//static.tumblr.com/3yh6fjw/pAyocbhkg/bootstrap.min.js"></script>
+  <script type="text/javascript" src="//static.tumblr.com/3yh6fjw/ZJYocbhkh/nav.js"></script>
+  <link rel="stylesheet" href="//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/css/style.css" charset="utf-8">
+
+  <script type="text/javascript" src="//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/js/script.js"></script>
+
+  <style>
+  	.club-info-link {width: 100%; height: 100%; display: block; position: relative; z-index: 100;}
+  	.rank-item {display: block;}
+  	.rank-item:hover:before {z-index: 9999;}
+
+  	.rank-item .item-logo {
+  		background-size: 50% auto;
+  		background-position: center;
+  		background-repeat: no-repeat;
+  	}
+
+  	.rank-item .item-logo::after {
+  		display: block;
+  		content: '';
+  		padding-top: 100%;
+  	}
+  	.rank-foto {
+  		float: none;
+  		width: 100%;
+  	}
+
+  	.rank-detail-box {
+	    width: 100%;
+	    height: auto;
+	    background: #252525;
+	    margin-left: 0;
+		}
+
+		.rank-logo {
+	    display: table-cell;
+	    max-width: 200px;
+	    width: 40%;
+	    height: auto;
+	    vertical-align: middle;
+	    background-size: 70% auto;
+	    background-repeat: no-repeat;
+	    background-position: center;
+		}
+		.rank-logo::after {
+	    content: '';
+	    display: block;
+	    padding-top: 100%;
+		}
+
+		.rank-detail-box .rank-detail {
+	    padding: 10px;
+	    padding-top: 0;
+	    vertical-align: middle;
+	    display: table;
+	    width: 100%;
+	    min-height: 195px;
+	    box-sizing: border-box;
+		}
+    .club-info-link-new {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999999;
+      display: block;
+      width: 88%;
+      height: 90%;
+      margin: 0 auto;
+    }
+    .club-info-link-new:before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border: 2px solid #ed1c24;
+      background: rgba(0, 0, 0, 0.6) url(https://yahoo-promotion.myguide.hk/tumblr/football-hub/assets/images/item_hove.png) no-repeat center;
+      z-index: 10;
+      opacity: 0;
+      transition: all .5s ease;
+    }
+    .club-info-link-new:hover:before {
+      opacity: 1;
+    }
+
+		.rank-brief {float: none;}
+  </style>
+</head>
+<body>
+    <div id="output"></div>
+  <div id="wrapper">
+
+    <div id="header">
+    	<div id="slider-nav" class=""></div>
+			<a href="#" id="burger-navi" class="">
+			 <span class="top"></span>
+			 <span class="middle"></span>
+			 <span class="bottom"></span>
+			</a>
+       <div class="center">
+         <a href="#" target="_blank" class="y-logo"></a>
+         <div class="slogan"></div>
+         <ol class="poster-link">
+           <li class="poster-facebook"><a href="#"></a></li>
+           <li class="poster-tumblr"><a href="#"></a></li>
+         </ol>
+       </div>
+    </div>
+
+    <!-- #導覽列 -->
+    <div id="navigation" class="clearfix"></div>
+
+    <!-- #當前比賽 -->
+    <div id="current-football">
+      <div class="center">
+        <p class="current-txt">直播中  - 南華 vs 傑志</p>
+        <div class="btn-watch"><a href="#"></a></div>
+      </div>
+    </div>
+
+
+    <!-- #主要內容 -->
+    <div id="container">
+      <div class="ad-container mb-25">
+    		<div class="ad-mast-container"><div id="yom-ad-MAST-iframe" class="ad-mast"></div></div>
+    		<div class="ad-ldrb-container"><div id="yom-ad-LDRB-iframe" class="ad-ldrb"></div></div>
+    	</div>
+
+      <div class="inner"></div>
+    </div>
+  </div>
+
+  <template id="template-club-list-item" style="display: none;">
+  	<div class="col-xs-6 col-md-3" style="position: relative;">
+      <div class="rank-item mb-25" >
+        <div class="club-info-link" href="">
+          <div class="item-logo" style="background-image: url(__clubLogo__);"></div>
+          <div class="item-name">__clubName__</div>
+        </div>
+      </div>
+      <a class="club-info-link-new" href="__clubInfoLink__" style=""></a>
+    </div>
+  </template>
+
+  <template id="template-club-info" style="display: none;">
+  	<div class="rank-info mb-25 clearfix">
+  		<h3 class="rank-unit-title mob-show">__clubFullName__</h3>
+			<div class="container-fluid"><div class="row">
+				<div class="col-xs-12 col-md-12 col-lg-8 rank-foto-box"><div class="rank-foto">
+					<img src="__clubPhoto__" alt="" />
+				</div></div>
+        <!-- #球會介紹 -->
+
+        <div class="col-xs-12 col-md-12 col-lg-4 rank-detail-info">
+        	<div class="rank-detail-box mb-6">
+	          <h3 class="rank-title">球會介紹</h3>
+	          <div class="rank-detail clearfix">
+	            <div class="rank-logo" style="background-image:url(__clubLogo__)"></div>
+	            <div class="rank-brief">
+	              <h4 class="rank-name">__clubFullName__</h4>
+	              <ol class="contact-info">
+	              	__clubInfo__
+	                <!--<li>成立年份 : 1910</li>
+	                <li>電郵 : <a href="mailto:info@scaaft.com">info@scaaft.com</a></li>-->
+	              </ol>
+	            </div>
+	          </div>
+	        </div>
+
+	        <!-- #獎項 -->
+	        <div class="rank-detail-box mb-6">
+	          <h3 class="rank-title">獎項</h3>
+	          <div class="rank-detail clearfix">
+	            <div class="scrollbar-box">
+	              <ol class="rank-winner">__clubHonor__</ol>
+	            </div>
+	          </div>
+	        </div>
+        </div>
+
+			</div></div>
+    </div>
+  </template>
+
+  <template id="template-club-player-container" style="display: none;">
+  	<div class="rank-member">
+      <h3 class="rank-member-title">球員</h3>
+      <div class="rank-member-table">
+        <span class="rabk-member-ps">*資訊由香港足球總會提供</span>
+        <div class="table-row table-title">
+          <div class="table-col member-img"></div>
+          <div class="table-col member-name"><span class="bl-red">名稱</span></div>
+          <div class="table-col member-info"><span class="bl-red">簡介</span></div>
+        </div>
+        __playerList__
+      </div>
+    </div>
+  </template>
+
+  <template id="template-club-player-item" style="display: none;">
+  	<div class="table-row">
+      <div class="table-col member-img">__playerAvatar__</div>
+      <div class="table-col member-name"><span>__playerName__</span></div>
+      <div class="table-col member-info"><span class="bl-gray">位置 : __playerPosition__</span></div>
+    </div>
+	</template>
+
+  <script type="text/javascript">
+  	$('document').ready(function() {
+  		var is_club_info = (getParameterByName("club_id")!==null) ? true : false;
+  		var feed = '//yahoo-promotion.myguide.hk/tumblr/football-hub/feed/club_player.php' + ( is_club_info ?"?club_id=" + getParameterByName("club_id") :"");
+  		$.ajax({
+        url: feed,
+        method:'GET',
+  			dataType: 'jsonp',
+  			jsonp: "callback",
+        success: function(result) {
+    			//console.log(result);
+    			if(!is_club_info) {
+    				load_club_list(result);
+    			} else {
+    				load_club_info(result);
+    			}
+    		}
+      });
+  	});
+  	function getParameterByName(name, url) {
+	    if (!url) url = window.location.href;
+	    name = name.replace(/[\[\]]/g, "\\$&");
+	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+	        results = regex.exec(url);
+	    if (!results) return null;
+	    if (!results[2]) return '';
+	    return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+  	function load_club_list(result) {
+  		console.log(result);
+  		if(typeof result==="object" && typeof result.total==="number" && result.total > 0 && typeof result.club_list.data === "object" && result.club_list.data.length > 0  && result.total === result.club_list.data.length) {
+  			$('.inner').html('<div class="rank-list"><div class="container-fluid"><div class="row"></div></div></div>');
+  			for(i=0; i<result.club_list.data.length; i++) {
+  				var template = $('#template-club-list-item').html();
+  				var tmp_club_info_link = window.location.href + "?club_id=" + result.club_list.data[i].id;
+  				var tmp_club_logo = "//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/images/logo/logo_" + result.club_list.data[i].id + ".png";
+  				var tmp_club_name = result.club_list.data[i].name;
+
+  				template = template.replace(/__clubInfoLink__/g, tmp_club_info_link)
+  													 .replace(/__clubLogo__/g, tmp_club_logo)
+  													 .replace(/__clubName__/g, tmp_club_name);
+
+  				$('.inner .rank-list .container-fluid .row').append(template);
+  			}
+  		}
+  	}
+
+  	function load_club_info(result) {
+  		if(typeof result==="object" && typeof result.club_list==="object" && typeof result.club_list.data==="object" && result.club_list.data.length > 0) {
+  			for(i=0; i<1; i++) {
+  				var club_info_html = "";
+
+  				var tmp_full_name = result.club_list.data[i].fullname || result.club_list.data[i].name || '';
+  				var tmp_found = result.club_list.data[i].found || '';
+  				var tmp_email = result.club_list.data[i].email || '';
+  				//var club_logo = result.club_list.data[i].club_logo || 'http://dummyimage.com/100x100/ffffff/000000&text=No+Image+Available';
+  				var club_logo = "//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/images/logo/logo_" + result.club_list.data[i].id + ".png";
+  				var club_photo = result.club_list.data[i].clubphoto || 'http://dummyimage.com/767x512/ffffff/000000&text=No+Image+Available';
+  				var club_honor = result.club_list.data[i].honor || new Array();
+  				var club_player = result.club_list.data[i].player || new Array();
+  				var club_honor_html = "";
+  				var club_player_html = "";
+
+  				if(tmp_found!=="") {
+  					club_info_html += "<li>成立年份 : " + tmp_found + "</li>";
+  				}
+  				if(tmp_email!=="") {
+  					club_info_html += "<li>電郵 : " + tmp_email + "</li>";
+  				}
+
+
+  				if(typeof club_honor==="object" && club_honor.length > 0) {
+  					for(j=0; j<club_honor.length; j++) {
+  						if(typeof club_honor[j]==="string" && club_honor[j]!=='') {
+  							club_honor_html += '<li>'+club_honor[j]+'</li>';
+  						}
+  					}
+  				}
+
+  				if(typeof club_player==="object" && club_player.length > 0) {
+  					for(j=0; j<club_player.length; j++) {
+
+  						if(typeof club_player[j]==="object" && club_player[j].name!=='') {
+  							var template_player_item = $('#template-club-player-item').html();
+  							var tmp_player_name = club_player[j].name || '';
+  							var tmp_player_avatar = (club_player[j].photo!=="http://www.hkfa.com/var/images/") ?club_player[j].photo :"";
+  							console.log(club_player[j].photo);
+  							var tmp_player_position = club_player[j].position || '';
+
+  							if(tmp_player_avatar!=='') {
+  								tmp_player_avatar = '<img src="'+tmp_player_avatar+'" />';
+  							}
+  							template_player_item = template_player_item.replace(/__playerAvatar__/g, tmp_player_avatar)
+  																												 .replace(/__playerName__/g, tmp_player_name)
+  																												 .replace(/__playerPosition__/g, tmp_player_position);
+  							club_player_html += template_player_item;
+  						}
+  					}
+  				}
+
+  				if(tmp_full_name!=='' && club_photo!=='' && club_logo!=='') {
+  					var template_container = $('#template-club-info').html();
+  					template_container = template_container.replace(/__clubPhoto__/g, club_photo)
+  																								 .replace(/__clubLogo__/g, club_logo)
+  																								 .replace(/__clubFullName__/g, tmp_full_name)
+  																								 .replace(/__clubInfo__/g, club_info_html)
+  																								 .replace(/__clubHonor__/g, club_honor_html);
+						$('.inner').append(template_container);
+  				}
+  				if(club_player_html!=="") {
+  					var template_container = $('#template-club-player-container').html();
+  					template_container = template_container.replace(/__playerList__/g,club_player_html);
+  					$('.inner').append(template_container);
+  				}
+
+  			}
+  		} else {
+  			$('.inner').html("<center style='color: white;'>暫時沒有相關資料可供查閱!</center>");
+  		}
+
+  	}
+
+  </script>
+
+	<script>
+		var _gaq=[['_setAccount','UA-57166391-43'],['_trackPageview']];
+		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
+
+	<!--Rapid start-->
+	<script src="https://s.yimg.com/ss/rapid-3.36.1.js"></script>
+	<script src="https://s.yimg.com/ss/rapidworker-1.2.js"></script>
+	<script>
+	var conf = {spaceid:1197801442,pageview_on_init:true,client_only:1};
+	var ins = new YAHOO.i13n.Rapid(conf);
+	ins.init();
+	</script>
+
+</body>
+</html>
