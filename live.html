@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-Hans-HK">
+<head>
+  <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Yahoo 體育 - 港超聯</title>
+  <meta name="description" content="撐本地足球，提供港超聯直播、賽事精華、球會簡介及相關新聞。">
+  <meta name="keywords" content="港超聯, 港超聯直播, 賽事精華, 南華, 東方, 傑志, 飛馬, 南區, 流浪, 銀牌, 本地波, 香港足球, 香港隊">
+  <link rel="shortcut icon" href="https://s.yimg.com/rz/l/favicon.ico">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//static.tumblr.com/3yh6fjw/cnlocbhkl/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="//static.tumblr.com/3yh6fjw/YyTocbhkg/bootstrap-theme.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script type="text/javascript" src="//static.tumblr.com/vexeq8y/tJWnlzwcq/jquery.js"></script>
+  <script type="text/javascript" src="//static.tumblr.com/3yh6fjw/ZJYocbhkh/nav.js"></script>
+  <script src="//static.tumblr.com/3yh6fjw/pAyocbhkg/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/css/style.css" charset="utf-8">
+  <script type="text/javascript" src="//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/js/script.js"></script>
+
+  <style>
+  .live-play-title {padding-left: 120px;}
+  </style>
+</head>
+<body>
+    <div id="output"></div>
+  <div id="wrapper">
+
+    <div id="header">
+
+		<div id="slider-nav" class=""></div>
+		<a href="#" id="burger-navi" class="">
+		 <span class="top"></span>
+		 <span class="middle"></span>
+		 <span class="bottom"></span>
+		</a>
+
+       <div class="center">
+         <a href="#" target="_blank" class="y-logo"></a>
+         <div class="slogan"></div>
+
+         <ol class="poster-link">
+           <li class="poster-facebook"><a href="#"></a></li>
+           <li class="poster-tumblr"><a href="#"></a></li>
+         </ol>
+       </div>
+    </div>
+
+    <!-- #導覽列 -->
+    <div id="navigation" class="clearfix"></div>
+
+    <!-- #當前比賽 -->
+    <!-- <div id="current-football">
+      <div class="center">
+        <p class="current-txt">直播中  - 南華 vs 傑志</p>
+        <div class="btn-watch"><a href="#"></a></div>
+      </div>
+    </div> -->
+
+
+    <!-- #主要內容 -->
+    <div id="container">
+      <div class="ad-container mb-25">
+			<div class="ad-mast-container"><div id="yom-ad-MAST-iframe" class="ad-mast"></div></div>
+			<div class="ad-ldrb-container"><div id="yom-ad-LDRB-iframe" class="ad-ldrb"></div></div>
+		</div>
+
+      <div class="inner"></div>
+    </div>
+  </div>
+  <template id="template-live-video-player">
+    <div class="live-play clearfix">
+      <div class="live-play-video">
+        <h3 class="live-play-title">__liveTitle__ </h3>
+            <div class="live-video-container"><iframe width='640' height='360' scrolling='no' frameborder='0' src='__liveUrl__' allowfullscreen='true' mozallowfullscreen='true' webkitallowfullscreen='true' allowtransparency='true'></iframe></div>
+      </div>
+
+      <div class="live-rank">
+				<span><span class="home-team">__team1__</span> <b><span class="home_score"></span> - <span class="guest_score"></span></b> <span class="guest-team">__team2__</span></span>
+			</div>
+			<div id="template_player_info_desktop" style="display: none;">
+				<div class="table-row">
+					<div class="table-cell live-num">#number#</div>
+					<div class="table-cell live-name">#name#</div>
+					<div class="table-cell live-1">#goal#</div>
+					<div class="table-cell live-2">#yellowcard#</div>
+					<div class="table-cell live-3">#redcard#</div>
+				</div>
+			</div>
+			<div id="template_player_info_mobile" style="display: none;">
+				<div class="live-member-row">
+					<div class="table-row">
+						<div class="table-cell live-num">#number#</div>
+						<div class="table-cell live-name">#name#</div>
+					</div>
+					<div class="table-row">
+						<div class="table-cell live-1">入球#goal#</div>
+						<div class="table-cell live-2">紅牌#yellowcard#</div>
+						<div class="table-cell live-3">黃牌#redcard#</div>
+					</div>
+				</div>
+			</div>
+			<div class="live-member desktop">
+				<h3 class="live-member-title">出場球員</h3>
+				<div class="live-member-table">
+					<span class="live-ps">*資訊由香港足球總會提供</span>
+					<div class="table-row table-title">
+						<div class="table-cell live-num"><span class="bl-red">球衣</span></div>
+						<div class="table-cell live-name"><span class="bl-red">球員</span></div>
+						<div class="table-cell live-1"><span class="bl-red">入球</span></div>
+						<div class="table-cell live-2"><span class="bl-red">紅牌</span></div>
+						<div class="table-cell live-3"><span class="bl-red">黃牌</span></div>
+					</div>
+					<div class="table-group color-red">
+						<div class="group-title home-team">__team1__</div>
+					</div>
+
+					<div class="table-group color-gray">
+						<div class="group-title guest-team">__team2__</div>
+					</div>
+				</div>
+			</div>
+
+    </div>
+  </template>
+
+  <template id="template-count-down">
+  	<style>
+  		.install-yahoo-news-app {
+  			margin-top: 50px;
+		    display: inline-block;
+		    font-size: 20px;
+		    color: #fff;
+  		}
+  		@media screen and (max-width: 500px) {
+  			.install-yahoo-news-app {font-size: 14px;}
+  		}
+  	</style>
+    <div class="live-countdown">
+      <h3 class="live-countdown-title mb-6">直播倒數</h3>
+      <div class="countdown">
+        <div class="countdown-time">
+          <b id="countdownday"></b><span class="dot">:</span>
+          <b id="countdownhour"></b><span class="dot">:</span>
+          <b id="countdownmin"></b></div>
+      </div>
+      <div class="countdown-rank-row">
+        <h4 class="rank"><b>__compTeam1__</b> vs <b>__compTeam2__</b></h4>
+        <span class="date">__compDate__</span>
+        <span class="location">__compLocation__</span>
+        <span class="install-yahoo-news-app" >Yahoo 首頁｜新聞APP 同步現場直播<br>立即<a href="https://hk.mobile.yahoo.com/news/" target="_blank">下載新聞APP</a> 體驗即時聊天室 打氣功能</span>
+      </div>
+    </div>
+  </template>
+
+  <script type="text/javascript">
+    var t = null;
+    var allow_insert = true;
+    $(document).ready(function() {
+      var display_video = false;
+      $.getJSON('https://yahoo-promotion.myguide.hk/tumblr/football-hub/feed/live.json', function(data_root) {
+      	if(typeof data_root==='object') {
+      		$.each(data_root, function(i, data) {
+
+      			if(allow_insert && typeof data === 'object' && data.endtime!==undefined && data.endtime!=="" && data.starttime!==undefined && data.starttime!=="" && new Date(data.endplaylive) > new Date()) {
+		          var tmp_today = new Date();
+		          if(tmp_today >= new Date(data.startplaylive) && tmp_today <= new Date(data.endplaylive)) {
+		            var template = $('#template-live-video-player').html();
+		            window.match_id = data.matchid;
+
+		            template = template.replace(/__liveTitle__/g, data.title)
+		                               .replace(/__liveUrl__/g, data.videourl);
+
+		            $('.inner').append(template);
+		            populateInfo();
+								setInterval(populateInfo, 30000);
+		          } else {
+		            var tt = new Date();
+		            t = new Date(data.starttime);
+		            if(t > tt) {
+		              var tmp_t_tt_diff = get_date_diff(Math.abs(tt - t));
+		              tmp_t_tt_diff = tmp_t_tt_diff.split('.');
+		              var compStartTime = t.getFullYear() + "."
+		                                + ("0" + (t.getMonth()+1)).slice(-2) +"."
+		                                + ("0" + t.getDate()).slice(-2) + " "
+		                                + ("0" + t.getHours()).slice(-2) + ":"
+		                                + ("0" + t.getMinutes()).slice(-2);
+
+		              var template = $('#template-count-down').html();
+		              template = template.replace(/__compTeam1__/g, data.team1)
+		                                 .replace(/__compTeam2__/g, data.team2)
+		                                 .replace(/__compDate__/g, data.starttime)
+		                                 .replace(/__compLocation__/g, data.location);
+		              $('.inner').append(template);
+
+		              /* Init */
+		              $('#countdownday').text((tmp_t_tt_diff[0] < 10 ?"0" : "") + tmp_t_tt_diff[0]);
+		              $('#countdownhour').text((tmp_t_tt_diff[1] < 10 ?"0" : "") + tmp_t_tt_diff[1]);
+		              $('#countdownmin').text((tmp_t_tt_diff[2] < 10 ?"0" : "") + tmp_t_tt_diff[2]);
+
+		              /* Update every 30 min */
+		              var tmp_countdown = setInterval(function() {
+		                var tt = new Date();
+		                var tmp_t_tt_diff = get_date_diff(Math.abs(tt - t));
+		                tmp_t_tt_diff = tmp_t_tt_diff.split('.');
+
+		                $('#countdownday').text((tmp_t_tt_diff[0] < 10 ?"0" : "") + tmp_t_tt_diff[0]);
+		                $('#countdownhour').text((tmp_t_tt_diff[1] < 10 ?"0" : "") + tmp_t_tt_diff[1]);
+		                $('#countdownmin').text((tmp_t_tt_diff[2] < 10 ?"0" : "") + tmp_t_tt_diff[2]);
+		              }, 30000);
+
+		            } else {
+		              //$('.inner').append('<center style="color: white;">沒有比賽排期進行中!</center>');
+		            }
+		          }
+		          allow_insert = false;
+		        } else {
+		        }
+      		});
+      		if(allow_insert) $('.inner').append('<center style="color: white;">沒有比賽排期進行中!</center>');
+      	}
+      });
+
+      function populateInfo() {
+				var template_player_info_desktop = $('#template_player_info_desktop'),
+					template_player_info_mobile = $('#template_player_info_mobile'),
+					color_red_desktop = $('.live-member .color-red'),
+					color_gray_desktop = $('.live-member .color-gray'),
+					color_red_mobile = $('.live-mob-member .color-red'),
+					color_gray_mobile = $('.live-mob-member .color-gray'),
+					home_score = $('.home_score'),
+					guest_score = $('.guest_score');
+				$.getJSON(
+					'https://yahoo-promotion.myguide.hk/tumblr/football-hub/feed/matchschedule_live.php?match_id='+window.match_id,
+					{},
+					function(response) {
+						color_red_desktop.find('.table-row').remove();
+						color_red_mobile.find('.live-member-row').remove();
+						color_gray_desktop.find('.table-row').remove();
+						color_gray_mobile.find('.live-member-row').remove();
+
+            $('.home-team').text(response.home_team.name);
+            $('.guest-team').text(response.guest_team.name);
+
+            $(response).each(function(index, match) {
+							$(match.home_team.players).each(function(index, player) {
+								var html_desktop = template_player_info_desktop.html(),
+									html_mobile = template_player_info_mobile.html();
+
+								html_desktop = html_desktop.replace(/#number#/g, player.jersey);
+								html_desktop = html_desktop.replace(/#name#/g, player.name);
+								html_desktop = html_desktop.replace(/#goal#/g, player.goal);
+								html_desktop = html_desktop.replace(/#yellowcard#/g, player.yellowcard);
+								html_desktop = html_desktop.replace(/#redcard#/g, player.redcard);
+
+								html_mobile = html_mobile.replace(/#number#/g, player.jersey);
+								html_mobile = html_mobile.replace(/#name#/g, player.name);
+								html_mobile = html_mobile.replace(/#goal#/g, player.goal);
+								html_mobile = html_mobile.replace(/#yellowcard#/g, player.yellowcard);
+								html_mobile = html_mobile.replace(/#redcard#/g, player.redcard);
+
+								color_red_desktop.append(html_desktop);
+								color_red_mobile.append(html_mobile);
+							});
+
+							$(match.guest_team.players).each(function(index, player) {
+								var html_desktop = template_player_info_desktop.html(),
+									html_mobile = template_player_info_mobile.html();
+
+								html_desktop = html_desktop.replace(/#number#/g, player.jersey);
+								html_desktop = html_desktop.replace(/#name#/g, player.name);
+								html_desktop = html_desktop.replace(/#goal#/g, player.goal);
+								html_desktop = html_desktop.replace(/#yellowcard#/g, player.yellowcard);
+								html_desktop = html_desktop.replace(/#redcard#/g, player.redcard);
+
+								html_mobile = html_mobile.replace(/#number#/g, player.jersey);
+								html_mobile = html_mobile.replace(/#name#/g, player.name);
+								html_mobile = html_mobile.replace(/#goal#/g, player.goal);
+								html_mobile = html_mobile.replace(/#yellowcard#/g, player.yellowcard);
+								html_mobile = html_mobile.replace(/#redcard#/g, player.redcard);
+
+								color_gray_desktop.append(html_desktop);
+								color_gray_mobile.append(html_mobile);
+							});
+
+							home_score.html(match.home_team.score);
+							guest_score.html(match.guest_team.score);
+						});
+					}
+				);
+			}
+
+    });
+
+    function get_date_diff(differed) {
+      diff_in_min = differed / (1000 * 60); //In min
+
+      /* Calculating in Day */
+      var diff_day = Math.floor(diff_in_min / (60 * 24));  //In Day
+      diff_in_min -= (diff_day * 60 * 24);
+
+      /* Calculting in Hours */
+      var diff_hour = Math.floor(diff_in_min / (60));  //In Day
+      diff_in_min -= (diff_hour * 60);
+
+      return diff_day + "." + diff_hour + "." + diff_in_min;
+    }
+  </script>
+	<script>
+		var _gaq=[['_setAccount','UA-57166391-43'],['_trackPageview']];
+		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
+
+	<!--Rapid start-->
+	<script src="https://s.yimg.com/ss/rapid-3.36.1.js"></script>
+	<script src="https://s.yimg.com/ss/rapidworker-1.2.js"></script>
+	<script>
+  	var conf = {spaceid:1197801442,pageview_on_init:true,client_only:1};
+  	var ins = new YAHOO.i13n.Rapid(conf);
+  	ins.init();
+  </script>
+
+
+</body>
+</html>

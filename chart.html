@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-Hans-HK">
+<head>
+  <meta charset="UTF-8">
+  <title>Yahoo 體育 - 港超聯</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="description" content="撐本地足球，提供港超聯直播、賽事精華、球會簡介及相關新聞。">
+  <meta name="keywords" content="港超聯, 港超聯直播, 賽事精華, 南華, 東方, 傑志, 飛馬, 南區, 流浪, 銀牌, 本地波, 香港足球, 香港隊">
+  <link rel="shortcut icon" href="https://s.yimg.com/rz/l/favicon.ico">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//static.tumblr.com/3yh6fjw/cnlocbhkl/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="//static.tumblr.com/3yh6fjw/YyTocbhkg/bootstrap-theme.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script type="text/javascript" src="//static.tumblr.com/vexeq8y/tJWnlzwcq/jquery.js"></script>
+  <script type="text/javascript" src="//static.tumblr.com/3yh6fjw/ZJYocbhkh/nav.js"></script>
+  <script src="//static.tumblr.com/3yh6fjw/pAyocbhkg/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/css/style.css" charset="utf-8">
+  <script type="text/javascript" src="//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/js/script.js"></script>
+
+  <style>
+  	.schedule-table .schedule-position {width: 100px;}
+  	.schedule-table .schedule-team {width: 300px;}
+  	.schedule-table .schedule-team a:hover, .schedule-table .schedule-team a:hover > span {text-decoration: underline !important;;}
+  	.schedule-table .schedule-game {width: 100px;}
+  	.schedule-table .schedule-win {width: 100px;}
+  	.schedule-table .schedule-draw {width: 100px;}
+  	.schedule-table .schedule-loss {width: 100px;}
+  	.schedule-table .schedule-goalgain {width: 100px;}
+  	.schedule-table .schedule-goalloss {width: 100px;}
+  	.schedule-table .schedule-goaldiff {width: 100px;}
+  	.schedule-table .schedule-point {width: 100px;}
+
+    .table-col-m .m-col {text-align: center; font-size: 15px; line-height: 1.2; padding: 5px 0;}
+    .table-col-m .col-schedule-position {background-color: #ed1c24; color: #fff;}
+    .table-col-m .col-schedule-team {background-color: #e1e1e1;}
+  </style>
+
+</head>
+<body>
+    <div id="output"></div>
+  <div id="wrapper">
+
+    <div id="header">
+    	<div id="slider-nav" class=""></div>
+       <a href="#" id="burger-navi" class="">
+         <span class="top"></span>
+         <span class="middle"></span>
+         <span class="bottom"></span>
+       </a>
+       <div class="center">
+         <a href="#" target="_blank" class="y-logo"></a>
+         <div class="slogan"></div>
+         <ol class="poster-link">
+           <li class="poster-facebook"><a href="#"></a></li>
+           <li class="poster-tumblr"><a href="#"></a></li>
+         </ol>
+       </div>
+    </div>
+
+    <!-- #導覽列 -->
+    <div id="navigation" class="clearfix"></div>
+
+    <!-- #當前比賽 -->
+    <div id="current-football">
+      <div class="center">
+        <p class="current-txt">直播中  - 南華 vs 傑志</p>
+        <div class="btn-watch"><a href="#"></a></div>
+      </div>
+    </div>
+
+
+    <!-- #主要內容 -->
+    <div id="container">
+      <div class="ad-container mb-25">
+				<div class="ad-mast-container"><div id="yom-ad-MAST-iframe" class="ad-mast"></div></div>
+				<div class="ad-ldrb-container"><div id="yom-ad-LDRB-iframe" class="ad-ldrb"></div></div>
+			</div>
+
+      <div class="inner">
+        <div class="schedule-table mb-25">
+          <h3 class="schedule-title">積分榜</h3>
+          <div class="schedule-table">
+            <span class="schedule-ps">*資訊由香港足球總會提供</span>
+            <div class="table-row table-title hidden-xs hidden-sm">
+              <div class="table-col schedule-position"><span class="bl-red">排名</span></div>
+              <div class="table-col schedule-team"><span class="bl-red">隊伍</span></div>
+              <div class="table-col schedule-game"><span class="bl-red">賽</span></div>
+              <div class="table-col schedule-win"><span class="bl-red">勝</span></div>
+              <div class="table-col schedule-draw"><span class="bl-red">和</span></div>
+              <div class="table-col schedule-loss"><span class="bl-red">負</span></div>
+              <div class="table-col schedule-goalgain"><span class="bl-red">得球</span></div>
+              <div class="table-col schedule-goalloss"><span class="bl-red">失球</span></div>
+              <div class="table-col schedule-goaldiff"><span class="bl-red">球差</span></div>
+              <div class="table-col schedule-point"><span class="bl-red">積分</span></div>
+            </div>
+            <div class="table-row-body"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <template id="mobile-template-record" style="display: none;">
+    <div class="table-col table-col-m hidden-md hidden-lg"><div class="container-fluid"><div class="row">
+      <div class="col-xs-3 m-col col-schedule-position">__schedulePosition__</div>
+      <div class="col-xs-9 m-col col-schedule-team"><a href="__scheduleTeamID__">__scheduleTeam__</a></div>
+      <div class="col-xs-4 m-col col-schedule-win">勝 : __scheduleWin__</div>
+      <div class="col-xs-4 m-col col-schedule-draw">和 : __scheduleDraw__</div>
+      <div class="col-xs-4 m-col col-schedule-loss">負 : __scheduleLoss__</div>
+      <div class="col-xs-4 m-col col-schedule-goalgain">得 : __scheduleGoalGain__</div>
+      <div class="col-xs-4 m-col col-schedule-goalloss">失 : __scheduleGoalLoss__</div>
+      <div class="col-xs-4 m-col col-schedule-goaldiff">差 : __scheduleGoalDiff__</div>
+      <div class="col-xs-12 m-col col-schedule-point">積分 : __schedulePoint__</div>
+    </div></div></div>
+  </template>
+
+  <script type="text/javascript">
+  	$('document').ready(function() {
+  		$.ajax({
+  			url:'//yahoo-promotion.myguide.hk/tumblr/football-hub/feed/score_table.php',
+  			method:'GET',
+  			dataType: 'jsonp',
+  			jsonp: "callback",
+  			success:function(result) {
+  				console.log(result);
+  			if(typeof result.total ==="number" && result.total > 0 && typeof result.data==="object" && result.data.length===result.total) {
+  				for(i=0; i<result.data.length; i++) {
+  					var tmp_position = result.data[i].position || '';
+  					var tmp_club_name = result.data[i].club_name || '';
+  					var tmp_club_id = result.data[i].club_id || '#';
+  					var tmp_game = result.data[i].game || 0;
+  					var tmp_win = result.data[i].win || 0;
+  					var tmp_loss = result.data[i].loss || 0;
+  					var tmp_draw = result.data[i].draw || 0;
+  					var tmp_goal_gain = result.data[i].goal_gain || 0;
+  					var tmp_goal_loss = result.data[i].goal_loss || 0;
+  					var tmp_goal_diff = result.data[i].goal_diff || 0;
+  					var tmp_point = result.data[i].point || 0;
+
+  					if(tmp_position!=='' && tmp_club_name!=='') {
+  							var tmp_el = $('<div class="table-row hidden-xs hidden-sm" />');
+	  						tmp_el.append('<div class="table-col schedule-position"><span>'+tmp_position+'</span></div>');
+	  						tmp_el.append('<div class="table-col schedule-team"><a href="'+get_club_link(tmp_club_id)+'"><span>'+tmp_club_name+'</a></span></div>');
+	  						tmp_el.append('<div class="table-col schedule-game"><span>'+tmp_game+'</span></div>');
+	  						tmp_el.append('<div class="table-col schedule-win"><span>'+tmp_win+'</span></div>');
+	  						tmp_el.append('<div class="table-col schedule-draw"><span>'+tmp_draw+'</span></div>');
+	  						tmp_el.append('<div class="table-col schedule-loss"><span>'+tmp_loss+'</span></div>');
+	  						tmp_el.append('<div class="table-col schedule-goalgain"><span>'+tmp_goal_gain+'</span></div>');
+	  						tmp_el.append('<div class="table-col schedule-goalloss"><span>'+tmp_goal_loss+'</span></div>');
+	  						tmp_el.append('<div class="table-col schedule-goaldiff"><span>'+tmp_goal_diff+'</span></div>');
+	  						tmp_el.append('<div class="table-col schedule-point"><span>'+tmp_point+'</span></div>');
+
+	  						$('.table-row-body').append(tmp_el);
+
+                var tmp_el_m = $('<div class="table-row hidden-md hidden-lg" />');
+                var mobile_template = $('#mobile-template-record').html();
+                mobile_template = mobile_template.replace(/__schedulePosition__/g, tmp_position)
+                                                 .replace(/__scheduleTeam__/g, tmp_club_name)
+                                                 .replace(/__scheduleTeamID__/g, get_club_link(tmp_club_id))
+                                                 .replace(/__scheduleWin__/g, tmp_win)
+                                                 .replace(/__scheduleDraw__/g, tmp_draw)
+                                                 .replace(/__scheduleLoss__/g, tmp_loss)
+                                                 .replace(/__scheduleGoalGain__/g, tmp_goal_gain)
+                                                 .replace(/__scheduleGoalLoss__/g, tmp_goal_loss)
+                                                 .replace(/__scheduleGoalDiff__/g, tmp_goal_diff)
+                                                 .replace(/__schedulePoint__/g, tmp_point);
+                tmp_el_m.append(mobile_template);
+                $('.table-row-body').append(tmp_el_m);
+  					}
+  				}
+  			} else {
+  				$('.table-row-body').append('<div class="table-row"><div class="table-col" style="text-align: center;">暫時沒有相關數據提供!</div></div>');
+  			}
+  		}
+  		})
+  	});
+  	
+  	function get_club_link(cid) {
+  		if(cid!=='#') {
+  			return "http://hkleague.yahoo.com/info?club_id=" + cid;
+  		}
+  		return "#";
+  	}
+  </script>
+
+	<script>
+		var _gaq=[['_setAccount','UA-57166391-43'],['_trackPageview']];
+		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
+
+	<!--Rapid start-->
+	<script src="https://s.yimg.com/ss/rapid-3.36.1.js"></script>
+	<script src="https://s.yimg.com/ss/rapidworker-1.2.js"></script>
+	<script>
+	var conf = {spaceid:1197801442,pageview_on_init:true,client_only:1};
+	var ins = new YAHOO.i13n.Rapid(conf);
+	ins.init();
+	</script>
+</body>
+</html>

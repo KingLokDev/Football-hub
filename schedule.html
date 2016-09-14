@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-Hans-HK">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>Yahoo 體育 - 港超聯</title>
+		<meta name="description" content="撐本地足球，提供港超聯直播、賽事精華、球會簡介及相關新聞。">
+		<meta name="keywords" content="港超聯, 港超聯直播, 賽事精華, 南華, 東方, 傑志, 飛馬, 南區, 流浪, 銀牌, 本地波, 香港足球, 香港隊">
+		<link rel="shortcut icon" href="https://s.yimg.com/rz/l/favicon.ico">
+		<!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//static.tumblr.com/3yh6fjw/cnlocbhkl/bootstrap.min.css" />
+		<!-- Optional theme -->
+        <link rel="stylesheet" href="//static.tumblr.com/3yh6fjw/YyTocbhkg/bootstrap-theme.min.css" />
+		<!-- Latest compiled and minified JavaScript -->
+		<script type="text/javascript" src="//static.tumblr.com/vexeq8y/tJWnlzwcq/jquery.js"></script>
+        <script src="//static.tumblr.com/3yh6fjw/pAyocbhkg/bootstrap.min.js"></script>
+        <script src="//static.tumblr.com/3yh6fjw/ZJYocbhkh/nav.js"></script>
+        <link rel="stylesheet" href="//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/css/style.css" charset="utf-8" />
+        <script type="text/javascript" src="//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/js/script.js"></script>
+ 		<style>
+ 			@media (max-width: 500px) {
+				#page_schedule .main-info a {
+					color: #fff;
+					display: inline;
+					width: 100%;
+					text-decoration: underline;
+					padding: 0;
+				}
+			}
+ 		</style>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var template_table_row_desktop = $('#template_table_row_desktop'),
+					template_table_row_mobile = $('#template_table_row_mobile'),
+					table_body_desktop = $('.table-row-body.desktop'),
+					table_body_mobile = $('.table-row-body.mobile');
+
+				$.getJSON(
+					'https://yahoo-promotion.myguide.hk/tumblr/football-hub/feed/matchschedule_schedule.php',
+					{},
+					function(response) {
+						$(response).each(function(index, match) {
+							var html_desktop = template_table_row_desktop.html(),
+								html_mobile = template_table_row_mobile.html(),
+								match_date = new Date(match.match_date);
+
+							html_desktop = html_desktop.replace(/#date#/g, match_date.getFullYear() + '/' + (match_date.getMonth() + 1) + '/' + match_date.getDate());
+							html_desktop = html_desktop.replace(/#home_team_score#/g, match.home_team.score);
+							html_desktop = html_desktop.replace(/#guest_team_score#/g, match.guest_team.score);
+							html_desktop = html_desktop.replace(/#week#/g, match.week);
+							html_desktop = html_desktop.replace(/#home_team_info#/g, get_club_link(match.home_team.id));
+							html_desktop = html_desktop.replace(/#home_team_name#/g, match.home_team.name);
+							html_desktop = html_desktop.replace(/#guest_team_info#/g, get_club_link(match.guest_team.id));
+							html_desktop = html_desktop.replace(/#guest_team_name#/g, match.guest_team.name);
+							html_desktop = html_desktop.replace(/#game#/g, match.game);
+							html_desktop = html_desktop.replace(/#location#/g, match.location);
+							html_desktop = html_desktop.replace(/#time#/g, match.match_time);
+
+							html_mobile = html_mobile.replace(/#date#/g, match_date.getFullYear() + '/' + (match_date.getMonth() + 1) + '/' + match_date.getDate());
+							html_mobile = html_mobile.replace(/#home_team_score#/g, match.home_team.score);
+							html_mobile = html_mobile.replace(/#guest_team_score#/g, match.guest_team.score);
+							html_mobile = html_mobile.replace(/#week#/g, match.week);
+							html_mobile = html_mobile.replace(/#home_team_name#/g, match.home_team.name);
+							html_mobile = html_mobile.replace(/#home_team_info#/g, get_club_link(match.home_team.id));
+							html_mobile = html_mobile.replace(/#guest_team_name#/g, match.guest_team.name);
+							html_mobile = html_mobile.replace(/#guest_team_info#/g, get_club_link(match.guest_team.id));
+							html_mobile = html_mobile.replace(/#game#/g, match.game);
+							html_mobile = html_mobile.replace(/#location#/g, match.location);
+							html_mobile = html_mobile.replace(/#time#/g, match.match_time);
+
+							table_body_desktop.append(html_desktop);
+							table_body_mobile.append(html_mobile);
+						});
+					}
+				);
+			});
+			
+			function get_club_link(cid) {
+	  		if(cid!=='#') {
+	  			return "http://hkleague.yahoo.com/info?club_id=" + cid;
+	  		}
+	  		return "#";
+	  	}
+		</script>
+	</head>
+	<body id="page_schedule">
+		<div id="output"></div>
+		<div id="wrapper">
+
+			<div id="header">
+				<div id="slider-nav" class=""></div>
+				<a href="#" id="burger-navi" class="">
+					<span class="top"></span>
+					<span class="middle"></span>
+					<span class="bottom"></span>
+				</a>
+
+				<div class="center">
+					<a href="#" target="_blank" class="y-logo"></a>
+					<div class="slogan"></div>
+					<ol class="poster-link">
+						<li class="poster-facebook"><a href="#"></a></li>
+						<li class="poster-tumblr"><a href="#"></a></li>
+					</ol>
+				</div>
+			</div>
+
+			<!-- #導覽列 -->
+			<div id="navigation" class="clearfix"></div>
+
+			<!-- #當前比賽 -->
+			<div id="current-football">
+				<div class="center">
+					<p class="current-txt">直播中  - 南華 vs 傑志</p>
+					<div class="btn-watch"><a href="#"></a></div>
+				</div>
+			</div>
+
+
+			<!-- #主要內容 -->
+			<div id="container">
+				<div class="ad-container mb-25">
+					<div class="ad-mast-container"><div id="yom-ad-MAST-iframe" class="ad-mast"></div></div>
+					<div class="ad-ldrb-container"><div id="yom-ad-LDRB-iframe" class="ad-ldrb"></div></div>
+				</div>
+
+				<div style="display: none;">
+					<div id="template_table_row_desktop">
+						<div class="table-row">
+							<div class="table-col schedule-date"><span>#date#</span></div>
+							<div class="table-col schedule-result"><span>#home_team_score# : #guest_team_score#</span></div>
+							<div class="table-col schedule-week"><span>#week#</span></div>
+							<div class="table-col schedule-vs"><span><a href="#home_team_info#">#home_team_name#</a> vs <a href="#guest_team_info#">#guest_team_name#</a></span></div>
+							<div class="table-col schedule-game"><span>#game#</span></div>
+							<div class="table-col schedule-location"><span>#location#</span></div>
+							<div class="table-col schedule-time"><span>#time#</span></div>
+						</div>
+					</div>
+					<div id="template_table_row_mobile">
+						<div class="match-wrapper">
+							<div class="main-info">
+								<div class="schedule-vs">對賽隊伍</div>
+								<div class="schedule-week">週</div>
+								<div class="schedule-result">賽果</div>
+							</div>
+							<div class="main-info">
+								<div class="schedule-vs"><a href="#home_team_info#">#home_team_name#</a> vs <a href="#guest_team_info#">#guest_team_name#</a></div>
+								<div class="schedule-week">#week#</div>
+								<div class="schedule-result">#home_team_score# : #guest_team_score#</div>
+							</div>
+							<div class="sub-info">
+								<div class="sub-info-row">
+									<div class="sub-info-column">日期時間&nbsp;:&nbsp;</div>
+									<div class="sub-info-column">#date#<div class="spacing"></div>#time#</div>
+								</div>
+								<div class="sub-info-row">
+									<div class="sub-info-column">賽事&nbsp;:&nbsp;</div>
+									<div class="sub-info-column">#game#</div>
+								</div>
+								<div class="sub-info-row">
+									<div class="sub-info-column">場地&nbsp;:&nbsp;</div>
+									<div class="sub-info-column">#location#</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+					<div class="schedule-table mb-25">
+						<h3 class="schedule-title">賽程表</h3>
+						<div class="schedule-table">
+							<span class="schedule-ps">*資訊由香港足球總會提供</span>
+							<div class="table-row table-title desktop">
+								<div class="table-col schedule-date"><span class="bl-red">日期</span></div>
+								<div class="table-col schedule-result"><span class="bl-red">賽果</span></div>
+								<div class="table-col schedule-week"><span class="bl-red">週</span></div>
+								<div class="table-col schedule-vs"><span class="bl-red">主 - 對賽隊伍 - 客</span></div>
+								<div class="table-col schedule-game"><span class="bl-red">賽事</span></div>
+								<div class="table-col schedule-location"><span class="bl-red">場地</span></div>
+								<div class="table-col schedule-time"><span class="bl-red">時間</span></div>
+							</div>
+							<div class="table-row-body desktop"></div>
+							<div class="table-row-body mobile"></div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+
+
+		</div>
+
+		<script>
+			var _gaq=[['_setAccount','UA-57166391-43'],['_trackPageview']];
+			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+			g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+			s.parentNode.insertBefore(g,s)}(document,'script'));
+		</script>
+
+		<!--Rapid start-->
+		<script src="https://s.yimg.com/ss/rapid-3.36.1.js"></script>
+		<script src="https://s.yimg.com/ss/rapidworker-1.2.js"></script>
+		<script>
+		var conf = {spaceid:1197801442,pageview_on_init:true,client_only:1};
+		var ins = new YAHOO.i13n.Rapid(conf);
+		ins.init();
+		</script>
+
+	</body>
+</html>
