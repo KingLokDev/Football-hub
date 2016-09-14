@@ -133,15 +133,18 @@ $(document).ready(function() {
 				if(new Date(matchv.starttime) < new Date() && new Date(matchv.endtime) > new Date()) {
 					$('#current-football').show();
 					$('#current-football .current-txt').text("直播中 - " + matchv.team1 + " vs " + matchv.team2);
+					$('#current-football a').attr({"href":matchv.videourl, 'target':"_blank"});
+					$('.nav-2 > a').attr({'href':matchv.videourl, 'target':"_blank"});
 				}
+				
 				window.live_match_id.push(matchv.matchid);
 
 			});
 		});
 
-		//$.getJSON('https://yahoo-promotion.myguide.hk/tumblr/football-hub/feed/live_oncc.json', function(res) {
-			//window.live_match_id_oncc = res;
-		//});
+		$.getJSON('https://yahoo-promotion.myguide.hk/tumblr/football-hub/feed/live_oncc.json', function(res) {
+			window.live_match_id_oncc = res;
+		});
 });
 
 

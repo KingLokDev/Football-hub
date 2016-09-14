@@ -161,22 +161,22 @@
       $.getJSON('https://yahoo-promotion.myguide.hk/tumblr/football-hub/feed/live.json', function(data_root) {
       	if(typeof data_root==='object') {
       		$.each(data_root, function(i, data) {
-
       			if(allow_insert && typeof data === 'object' && data.endtime!==undefined && data.endtime!=="" && data.starttime!==undefined && data.starttime!=="" && new Date(data.endplaylive) > new Date()) {
 		          var tmp_today = new Date();
 		          if(tmp_today >= new Date(data.startplaylive) && tmp_today <= new Date(data.endplaylive)) {
-		            var template = $('#template-live-video-player').html();
+		            /* var template = $('#template-live-video-player').html();
 		            window.match_id = data.matchid;
 
 		            template = template.replace(/__liveTitle__/g, data.title)
 		                               .replace(/__liveUrl__/g, data.videourl);
 
-		            $('.inner').append(template);
-		            populateInfo();
-								setInterval(populateInfo, 30000);
+		            $('.inner').append(template); */
+		            /* populateInfo();
+								setInterval(populateInfo, 30000); */
+								window.location.href = data.videourl;
 		          } else {
 		            var tt = new Date();
-		            t = new Date(data.starttime);
+		            t = new Date(data.startplaylive);
 		            if(t > tt) {
 		              var tmp_t_tt_diff = get_date_diff(Math.abs(tt - t));
 		              tmp_t_tt_diff = tmp_t_tt_diff.split('.');
@@ -201,6 +201,11 @@
 		              /* Update every 30 min */
 		              var tmp_countdown = setInterval(function() {
 		                var tt = new Date();
+		                if(tt >= t) {
+		                	//Live Start
+		                	window.location.href = data.videourl;
+		                	return false;
+		                }
 		                var tmp_t_tt_diff = get_date_diff(Math.abs(tt - t));
 		                tmp_t_tt_diff = tmp_t_tt_diff.split('.');
 
@@ -210,7 +215,6 @@
 		              }, 30000);
 
 		            } else {
-		              //$('.inner').append('<center style="color: white;">沒有比賽排期進行中!</center>');
 		            }
 		          }
 		          allow_insert = false;
