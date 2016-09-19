@@ -166,7 +166,7 @@
   		<h3 class="rank-unit-title mob-show">__clubFullName__</h3>
 			<div class="container-fluid"><div class="row">
 				<div class="col-xs-12 col-md-12 col-lg-8 rank-foto-box"><div class="rank-foto">
-					<img src="__clubPhoto__" alt="" />
+					__clubPhoto__
 				</div></div>
         <!-- #球會介紹 -->
 
@@ -326,7 +326,7 @@
 
   				if(tmp_full_name!=='' && club_photo!=='' && club_logo!=='') {
   					var template_container = $('#template-club-info').html();
-  					template_container = template_container.replace(/__clubPhoto__/g, club_photo)
+  					template_container = template_container.replace(/__clubPhoto__/g, '<img src="'+club_photo+'" alt="" />')
   																								 .replace(/__clubLogo__/g, club_logo)
   																								 .replace(/__clubFullName__/g, tmp_full_name)
   																								 .replace(/__clubInfo__/g, club_info_html)
