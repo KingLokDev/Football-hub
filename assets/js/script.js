@@ -27,7 +27,7 @@ var menu_item = {
 };
 
 var more_article_offset = 0;
-var more_article_limit = 2;
+var more_article_limit = 8;
 var more_article_max = 999999999;
 
 var allow_retrieve_post = true;	
@@ -38,17 +38,18 @@ $(document).ready(function() {
 	/* Loading Menu */
 	$('body').prepend('<div id="y-header" class="noselect"> <div class="nav"> <ul> <li><a href="https://hk.yahoo.com/" target="_blank"><span class="icon_home"></span>首頁</a></li><li><a href="https://hk.mail.yahoo.com/" target="_blank">Mail</a></li><li><a href="https://hk.news.yahoo.com/" target="_blank">新聞</a></li><li><a href="https://hk.finance.yahoo.com/" target="_blank">財經</a></li><li><a href="https://hk.style.yahoo.com/" target="_blank">Style</a></li><li><a href="https://hk.celebrity.yahoo.com/" target="_blank">娛樂圈</a></li><li><a href="https://movie.yahoo-leisure.hk/" target="_blank">電影</a></li><li><a href="https://hk.sports.yahoo.com/" target="_blank">體育</a></li><li><a href="http://www.flickr.com/" target="_blank">Flickr</a></li><li><a href="http://hk.dictionary.yahoo.com/" target="_blank">字典</a></li><li><a href="http://hk.auctions.yahoo.com/" target="_blank">拍賣</a></li><li><a href="http://hk.deals.yahoo.com/hong-kong/" target="_blank">團購</a></li><li class="nav_more"> <a href="#">更多<span class="icon_more"></span></a> <div class="dropdown_list"> <dl> <dd><a href="https://hk.answers.yahoo.com/" target="_blank">知識+</a></dd> <dd><a href="https://hktravelnow.yahoo.com/" target="_blank">旅遊</a></dd> <dd><a href="https://hk.finance.yahoo.com/properties/" target="_blank">地產</a></dd> <dd><a href="https://yahoo-food.myguide.hk/d/" target="_blank">新煮意</a></dd> <dd><a href="https://yahoo-education.myguide.hk/d/" target="_blank">教育學習</a></dd> </dl> </div></li></ul> </div></div>');
 	init_main_nav();
-
-	if($('.load-more').length > 0) {
+	
+	//if($('.load-more').length > 0) {
+		
 		$(window).scroll(function() {
-			if($('.load-more').visible(true)) {
+			if(($('#club-news').length==0 || $('#club-news').hasClass('active')) && $('.load-more').length > 0 && $('.load-more').visible(true)) {
 				if(window.allow_retrieve_post) {
 					window.allow_retrieve_post = false;
 					$('.load-more').click();
 				}
 			}
 		});
-	}
+	//}
 
 	/* [Home Page] Top post module */
 	if(window.location.pathname==="/" && $('#top-posts').length > 0) {
@@ -96,11 +97,12 @@ $(document).ready(function() {
 	}, 500);
 
 
-	if(window.location.pathname.indexOf("/post/") > -1) {
+	if(window.location.pathname.indexOf("/post/") > -1 || window.location.pathname.indexOf("/info") > -1) {
+		
 		if(is_mobile()) {$('.right-box').remove();}
 		tidy_up_articles();
 		load_more_article();
-		$('.load-more').click(function() {
+		$(document).on('click', '.load-more', function() {
 			var tmp_post_count = $('.post-list-container article').length;
 			load_more_article();
 			var remove_loadmorebtn = setTimeout(function() {
@@ -309,7 +311,6 @@ function init_ad() {
 			var tmp_event = "";
 
 			if(window.location.pathname=="/" || window.location.pathname.indexOf('/tagged/') > -1) {
-				//alert("index page");
 				tmp_event = "indexFetch";
 				if(typeof window.DARLA.config().events.indexFetch =="undefined" || typeof window.DARLA.config().events.indexFetch.sa =="undefined" || typeof window.DARLA.config().events.indexFetch.sa.magpage =="undefined") return "123";
 				if(window.location.pathname=="/") {
@@ -336,7 +337,6 @@ function init_ad() {
 				}
 				window.DARLA.config().events.articleFetch.sa.hashtag = art_tags.join(";");
 			} else {
-				//alert("normal page");
 				tmp_event = (window.location.pathname.indexOf("schedule") > -1) ?"singlePageLdrbFetch" :"singlePageMastFetch";
 				if(tmp_event==="singlePageLdrbFetch") {
 					if(typeof window.DARLA.config().events.singlePageLdrbFetch =="undefined" || typeof window.DARLA.config().events.singlePageLdrbFetch.sa =="undefined" || typeof window.DARLA.config().events.singlePageLdrbFetch.sa.magpage =="undefined") return "123";
@@ -347,7 +347,6 @@ function init_ad() {
 				}
 
 			}
-			//alert(window.ad_page_type + " | " + window.ad_tags);
 			DARLA.event(tmp_event);
 		} else {
 			if(window.location.pathname=="/" || window.location.pathname.indexOf('/tagged/') > -1) {
@@ -401,8 +400,8 @@ function loadFunction(fn_name, fn_paramenter) {
 /* Global Function */
 
 function tidy_up_articles() {
-	//alert(1);
 	$('.post-list-container article:not(.post-ready,.article-ad)').each(function() {
+		//console.log($(this));
 		var tmp_reblog_title = $(this).find('span.tmp-reblog-title').text() || "";
 		var tmp_reblog_name = $(this).find('span.tmp-reblog-name').text() || "";
 		var tmp_reblog_link = $(this).find('span.tmp-reblog-link').text() || "";
@@ -485,7 +484,6 @@ function tidy_up_articles() {
 			window.init_post_stream_lrec2 = false;
 		}
 	}
-
 
 	$('.grid').masonry('reloadItems').imagesLoaded().progress(function() {
 		$('.grid').masonry('layout');
@@ -723,7 +721,10 @@ function get_thumbnail_from_api_array(arr) {
 
 function load_more_article() {
 	//console.log(window.more_article_offset + " | " + window.more_article_limit);
-	get_post_from_api("", window.more_article_limit, window.more_article_offset, "load_more_article_callback");
+	var tmp_tag = window.search_tag || "";
+	if(tmp_tag!=="#") {
+		get_post_from_api(tmp_tag, window.more_article_limit, window.more_article_offset, "load_more_article_callback");
+	}
 	window.more_article_offset += window.more_article_limit;
 }
 
@@ -779,7 +780,12 @@ function load_more_article_callback(data) {
 								 .append('<span class="tmp-reblog-link">'+tmp_author_permalink+'</span>')
 								 .append('<span class="tmp-reblog-btn-link">https://www.tumblr.com/reblog/'+tmp_post_id+'/'+tmp_post_reblog_key+'</span>')
 								 .append('<span class="tmp-like-link"><iframe id="like_iframe_'+tmp_post_id+'" src="http://assets.tumblr.com/assets/html/like_iframe.html?_v=662afb16c40c53f44feaf453f106a197#name=hkleague&amp;post_id='+tmp_post_id+'&amp;color=black&amp;rk='+tmp_post_reblog_key+'&amp;root_id='+tmp_post_id+'" scrolling="no" width="20" height="20" frameborder="0" class="like_toggle" allowtransparency="true" name="like_iframe_'+tmp_post_id+'"></iframe></span>');
-	      $('.inner.more-article #flow-posts').append($('<article />').append(tmp_el));
+	      if($('.inner.more-article #flow-posts').length > 0) {
+	      	$('.inner.more-article #flow-posts').append($('<article />').append(tmp_el));
+	      } else {
+	      	$('#flow-posts').append($('<article />').append(tmp_el));
+	      }
+	      
 
 			}
 			if(i==1) {
@@ -795,7 +801,9 @@ function load_more_article_callback(data) {
 
 /* Tumblr related function */
 function get_post_from_api(tag, limit, poffset, callback) {
+	//console.log(tag + " | " + limit + " | " + poffset);
 	if(window.tumblr_api_key!=="") {
+		//console.log("tumblr api key validated");
 		var tmp_tag = tag || "";
 		var tmp_limit = limit || 20;
 		var tmp_offset = poffset || 0;
@@ -813,19 +821,18 @@ function get_post_from_api(tag, limit, poffset, callback) {
 			'method' : "GET",
 			'dataType' : "jsonp"
 		}).done(function(data) {
-
 			if(
 				typeof data==="object" && typeof data.meta==="object" &&
 				typeof data.meta.status==="number" && data.meta.status===200
 			) {
 				if(typeof data.response==="object" && typeof data.response.posts==="object" && data.response.posts.length > 0) {
-
 					loadFunction(callback, data.response);
+					return false;
 				}
 			}
-			loadFunction("callback", false);
+			loadFunction(callback, false);
 		}).fail(function() {
-			loadFunction("callback", false);
+			loadFunction(callback, false);
 		});
 
 	}

@@ -13,11 +13,51 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="//static.tumblr.com/3yh6fjw/YyTocbhkg/bootstrap-theme.min.css">
   <!-- Latest compiled and minified JavaScript -->
+  <script type="text/javascript">
+  	function getParameterByName(name, url) {
+	    if (!url) url = window.location.href;
+	    name = name.replace(/[\[\]]/g, "\\$&");
+	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+	        results = regex.exec(url);
+	    if (!results) return null;
+	    if (!results[2]) return '';
+	    return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+		
+  	var club_alias_tags = {
+			'club_3': "理文流浪",
+			'club_2': "南華",
+			'club_4': "傑志",
+			'club_12': "東方龍獅",
+			'club_15': "港會",
+			'club_50': "冠忠南區",
+			'club_201': "標準灝天",
+			'club_300': "RF富力",
+			'club_21': "和富大埔",
+			'club_141': "香港飛馬",
+			'club_57': "九巴元朗"
+		};
+		
+		if(typeof club_alias_tags["club_" + getParameterByName("unique_id")]==="string") {
+			window.search_tag = club_alias_tags["club_" + getParameterByName("unique_id")] ;
+		} else {
+			window.search_tag = "#" ;
+		}
+		
+  </script>
   <script type="text/javascript" src="//static.tumblr.com/vexeq8y/tJWnlzwcq/jquery.js"></script>
   <script src="//static.tumblr.com/3yh6fjw/pAyocbhkg/bootstrap.min.js"></script>
   <script type="text/javascript" src="//static.tumblr.com/3yh6fjw/ZJYocbhkh/nav.js"></script>
+  <script type="text/javascript" src="//static.tumblr.com/vexeq8y/voEnlzwbm/plugins.js"></script>
+  <script type="text/javascript">
+    	//jquery-visible
+    	!function(t){var i=t(window);t.fn.visible=function(t,e,o){if(!(this.length<1)){var r=this.length>1?this.eq(0):this,n=r.get(0),f=i.width(),h=i.height(),o=o?o:"both",l=e===!0?n.offsetWidth*n.offsetHeight:!0;if("function"==typeof n.getBoundingClientRect){var g=n.getBoundingClientRect(),u=g.top>=0&&g.top<h,s=g.bottom>0&&g.bottom<=h,c=g.left>=0&&g.left<f,a=g.right>0&&g.right<=f,v=t?u||s:u&&s,b=t?c||a:c&&a;if("both"===o)return l&&v&&b;if("vertical"===o)return l&&v;if("horizontal"===o)return l&&b}else{var d=i.scrollTop(),p=d+h,w=i.scrollLeft(),m=w+f,y=r.offset(),z=y.top,B=z+r.height(),C=y.left,R=C+r.width(),j=t===!0?B:z,q=t===!0?z:B,H=t===!0?R:C,L=t===!0?C:R;if("both"===o)return!!l&&p>=q&&j>=d&&m>=L&&H>=w;if("vertical"===o)return!!l&&p>=q&&j>=d;if("horizontal"===o)return!!l&&m>=L&&H>=w}}}}(jQuery);
+    </script>
+
+  
   <link rel="stylesheet" href="//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/css/style.css" charset="utf-8">
 
+  <!--<script type="text/javascript" src="//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/js/script.js"></script>-->
   <script type="text/javascript" src="//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/js/script.js"></script>
 
   <style>
@@ -103,6 +143,31 @@
     }
 
 		.rank-brief {float: none;}
+		
+		#club-detail-container li {background-color: transparent !important; }
+		#club-detail-container li a { border: 0 none; background-color: transparent; font-size: 24px; line-height: 1.1; color: #666; border-right: 1px #fff solid; border-radius: 0; margin-bottom: 5px; padding: 0px 15px;}
+		#club-detail-container li:last-child a { border-right: 0;}
+		#club-detail-container li.active a, #club-detail-container li a:hover { color: #fff; }
+		
+		/* News section */
+		#flow-posts.post-list-container {
+			margin-top: 15px;
+		}
+		#flow-posts.post-list-container article {
+			width: 25%; 
+			padding: 0 8px 16px;
+		}
+		#flow-posts.post-list-container article .media-author .logo img {max-height: 45px; width: auto;}
+		
+		.post-content .post-item a {text-decoration: none;}
+		/* News section */
+		@media screen and (max-width: 767px) {
+			#club-detail-container li a {font-size: 24px;}
+			#flow-posts.post-list-container article {
+				width: 100%; 
+				padding: 0 15px 16px;
+			}
+		}
   </style>
 </head>
 <body>
@@ -200,10 +265,18 @@
 			</div></div>
     </div>
   </template>
-
+	
+	<template id="template-other-info" style="display: none;">
+		<ul class="nav nav-tabs" id="club-detail-container">
+		  <li class="active"><a data-toggle="tab" href="#club-player">球員</a></li>
+		  <li><a data-toggle="tab" href="#club-news">新聞</a></li>
+		</ul>
+		<div class="tab-content"></div>
+	</template>
+	
   <template id="template-club-player-container" style="display: none;">
-  	<div class="rank-member">
-      <h3 class="rank-member-title">球員</h3>
+  	<div class="rank-member tab-pane fade in active" id="club-player">
+      <!--<h3 class="rank-member-title">球員</h3>-->
       <div class="rank-member-table">
         <span class="rabk-member-ps">*資訊由香港足球總會提供</span>
         <div class="table-row table-title">
@@ -215,19 +288,57 @@
       </div>
     </div>
   </template>
+  
+  <template id="template-club-news-container" style="display: none;">
+  	<div class="more-article club-news-container tab-pane fade" id="club-news">
+      <div id="flow-posts" class="post-list-container grid"></div>
+      <!-- load more -->
+      <a href="javascript:;" class="load-more" style="display: block;"></a>
+    </div>
+  </template>
+  
+  <template id="template-common-post-item" style="display: none;">
+		<div class="post-item">
+	    <div class="post-foto-box">
+	      <a href="__postPermalink__" target="_blank" class="post-foto">__postThumbnail__</a>
+	      <a href="__authorLink__" target="_blank" class="media-author">
+	        <div class="logo">__authorLogo__</div>
+	        <span class="name">__authorName__</span>
+	      </a>
+	    </div>
+	    <div class="post-text">
+	      <a href="__postPermalink__" target="_blank"><h3>__postTitle__</h3></a>
+	      <a href="__postPermalink__" target="_blank"><span class="post-txt">__postShortDesc__</span></a>
+	      <div class="post-tools">
+	        <span class="notes">__postNote__ notes</span>
+	        <ol class="tools">
+	          __socialTools__
+	        </ol>
+	      </div>
+	    </div>
+	  </div>
+	</template>
+
+  
 
   <template id="template-club-player-item" style="display: none;">
   	<div class="table-row">
       <div class="table-col member-img">__playerAvatar__</div>
-      <div class="table-col member-name"><span>__playerName__</span></div>
+      <div class="table-col member-name"><!--<a href="__userProfileLink__" target="_blank">--><span>__playerName__</span><!--</a>--></div>
       <div class="table-col member-info"><span class="bl-gray">位置 : __playerPosition__</span></div>
     </div>
 	</template>
 
   <script type="text/javascript">
+  	window.allow_retrieve_post = true;
+  	var unique_id = getParameterByName("unique_id");
+  	
+  	var more_article_limit = 10;
+  	var more_article_offset = 0;
+  	
   	$('document').ready(function() {
   		var is_club_info = (getParameterByName("club_id")!==null) ? true : false;
-  		var feed = '//yahoo-promotion.myguide.hk/tumblr/football-hub/feed/club_player.php' + ( is_club_info ?"?club_id=" + getParameterByName("club_id") :"");
+  		var feed = '//yahoo-promotion.myguide.hk/tumblr/football-hub/feed/club_player.php' + ( is_club_info ?"?club_id=" + getParameterByName("club_id")  :"");
   		$.ajax({
         url: feed,
         method:'GET',
@@ -242,23 +353,30 @@
     			}
     		}
       });
+      $('.grid').masonry().imagesLoaded().progress(function() {
+				$('.grid').masonry()
+			});
+			
+			/* News section */
+			$(document).on('click', ".inner [href=#club-news]", function() {
+				var change_tab = setInterval(function() {
+					if($('#club-news').hasClass('in') && $('#club-news').hasClass('active')) {
+						$('.grid').masonry();
+						window.clearInterval('change_tab');
+					}
+				},100);
+			});
+			/* News section */
+      
   	});
-  	function getParameterByName(name, url) {
-	    if (!url) url = window.location.href;
-	    name = name.replace(/[\[\]]/g, "\\$&");
-	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-	        results = regex.exec(url);
-	    if (!results) return null;
-	    if (!results[2]) return '';
-	    return decodeURIComponent(results[2].replace(/\+/g, " "));
-		}
+  	
   	function load_club_list(result) {
   		console.log(result);
   		if(typeof result==="object" && typeof result.total==="number" && result.total > 0 && typeof result.club_list.data === "object" && result.club_list.data.length > 0  && result.total === result.club_list.data.length) {
   			$('.inner').html('<div class="rank-list"><div class="container-fluid"><div class="row"></div></div></div>');
   			for(i=0; i<result.club_list.data.length; i++) {
   				var template = $('#template-club-list-item').html();
-  				var tmp_club_info_link = window.location.href + "?club_id=" + result.club_list.data[i].id;
+  				var tmp_club_info_link = window.location.href + "?club_id=" + result.club_list.data[i].id + "&unique_id=" + result.club_list.data[i].unique_id;
   				var tmp_club_logo = "//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/images/logo/logo_" + result.club_list.data[i].id + ".png";
   				var tmp_club_name = result.club_list.data[i].name;
 
@@ -302,15 +420,15 @@
   						}
   					}
   				}
-
   				if(typeof club_player==="object" && club_player.length > 0) {
   					for(j=0; j<club_player.length; j++) {
-
+		
   						if(typeof club_player[j]==="object" && club_player[j].name!=='') {
   							var template_player_item = $('#template-club-player-item').html();
   							var tmp_player_name = club_player[j].name || '';
   							var tmp_player_avatar = (club_player[j].photo!=="http://www.hkfa.com/var/images/") ?club_player[j].photo :"";
-  							console.log(club_player[j].photo);
+  							var tmp_player_id = "";
+  							//console.log(club_player[j].photo);
   							var tmp_player_position = club_player[j].position || '';
 
   							if(tmp_player_avatar!=='') {
@@ -318,6 +436,7 @@
   							}
   							template_player_item = template_player_item.replace(/__playerAvatar__/g, tmp_player_avatar)
   																												 .replace(/__playerName__/g, tmp_player_name)
+  																												 .replace(/__userProfileLink__/g, "yahoo-promotion.myguide.hk/tumblr/football-hub/info_user.html?uid=" + tmp_player_id + "&cid=" + unique_id)
   																												 .replace(/__playerPosition__/g, tmp_player_position);
   							club_player_html += template_player_item;
   						}
@@ -333,36 +452,39 @@
   																								 .replace(/__clubHonor__/g, club_honor_html);
 						$('.inner').append(template_container);
   				}
+  				$('.inner').append($('#template-other-info').html());
   				if(club_player_html!=="") {
   					var template_container = $('#template-club-player-container').html();
   					template_container = template_container.replace(/__playerList__/g,club_player_html);
-  					$('.inner').append(template_container);
+  					$('.tab-content').append(template_container);
   				}
-
+					
+					$('.tab-content').append($('#template-club-news-container').html());
+					
   			}
   		} else {
   			$('.inner').html("<center style='color: white;'>暫時沒有相關資料可供查閱!</center>");
   		}
 
   	}
-
+  	
   </script>
 
-	<script>
+	<!--<script>
 		var _gaq=[['_setAccount','UA-57166391-43'],['_trackPageview']];
 		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
 		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
 		s.parentNode.insertBefore(g,s)}(document,'script'));
-	</script>
+	</script>-->
 
 	<!--Rapid start-->
-	<script src="https://s.yimg.com/ss/rapid-3.36.1.js"></script>
+	<!--<script src="https://s.yimg.com/ss/rapid-3.36.1.js"></script>
 	<script src="https://s.yimg.com/ss/rapidworker-1.2.js"></script>
 	<script>
 	var conf = {spaceid:1197801442,pageview_on_init:true,client_only:1};
 	var ins = new YAHOO.i13n.Rapid(conf);
 	ins.init();
-	</script>
+	</script>-->
 
 </body>
 </html>
