@@ -161,9 +161,9 @@
       $.getJSON('https://yahoo-promotion.myguide.hk/tumblr/football-hub/feed/live.json', function(data_root) {
       	if(typeof data_root==='object') {
       		$.each(data_root, function(i, data) {
-      			if(allow_insert && typeof data === 'object' && data.endtime!==undefined && data.endtime!=="" && data.starttime!==undefined && data.starttime!=="" && new Date(data.endplaylive) > new Date()) {
+      			if(allow_insert && typeof data === 'object' && data.endtime!==undefined && data.endtime!=="" && data.starttime!==undefined && data.starttime!=="" && new Date(data.endtime/* endplaylive */) > new Date()) {
 		          var tmp_today = new Date();
-		          if(tmp_today >= new Date(data.startplaylive) && tmp_today <= new Date(data.endplaylive)) {
+		          if(tmp_today >= new Date(data.starttime/*startplaylive*/) && tmp_today <= new Date(data.endtime/* endplaylive */)) {
 		            /* var template = $('#template-live-video-player').html();
 		            window.match_id = data.matchid;
 
@@ -176,7 +176,7 @@
 								window.location.href = data.videourl;
 		          } else {
 		            var tt = new Date();
-		            t = new Date(data.startplaylive);
+		            t = new Date(data.starttime/* startplaylive */);
 		            if(t > tt) {
 		              var tmp_t_tt_diff = get_date_diff(Math.abs(tt - t));
 		              tmp_t_tt_diff = tmp_t_tt_diff.split('.');
@@ -214,8 +214,7 @@
 		                $('#countdownmin').text((tmp_t_tt_diff[2] < 10 ?"0" : "") + tmp_t_tt_diff[2]);
 		              }, 30000);
 
-		            } else {
-		            }
+		            } else {}
 		          }
 		          allow_insert = false;
 		        } else {

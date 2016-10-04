@@ -1,4 +1,7 @@
 <?php
+
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST');  
 	include_once('matchschedule.php');
 	include_once('matchschedule_common.php');
 
@@ -24,12 +27,12 @@
 					'name' => $match['guest_team']['name']
 				)
 			);
-
+			$response_item['status_id'] = $match['status_id'];
 			$response_item['match_time'] = $match['time'];
-
 			if ($match['status_id'] !== 5 && $match['status_id'] !== 7 && $match['status_id'] !== 1) {
 				$response_item['match_time'] = $match['time'];
 			} else {
+				
 				//if($match['status_id']===5) {
 					$response_item['live'] = $match['status_id'];
 					$home_event_goal_count = 0;

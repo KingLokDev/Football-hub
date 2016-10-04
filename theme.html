@@ -264,7 +264,7 @@
 
 				function populateMatch() {
 					$.getJSON(
-						'https://yahoo-promotion.myguide.hk/tumblr/football-hub/feed/matchschedule_home.php',
+						'https:{text:External Domain}tumblr/football-hub/feed/matchschedule_home.php',
 						{},
 						function(response) {
 							var desktop_schedule = $('#schedule-brand'),
@@ -329,8 +329,7 @@
 
 								var desktop_row = $($.trim(desktop_html)).appendTo(desktop_schedule),
 									mobile_row = $($.trim(mobile_html)).appendTo(mobile_schedule);
-							
-								if(typeof match.live === 'undefined' && $.inArray(match.match_id.toString(), window.live_match_id) > -1) {
+								if($.inArray(match.match_id.toString(), window.live_match_id) > -1 && match.status_id!=="1" && match.status_id!=="2" && match.status_id!=="3" && match.status_id!=="4") {
 									desktop_row.find('.show-end b').html("Yahoo首頁<br>全程直播！").css({'color':'red'});
 									mobile_row.find('.show-score span').html("Yahoo首頁<br>全程直播！").css({'color':'red'});
 								} else if(typeof match.live === 'undefined' || (typeof match.live !== 'undefined' && match.live!="1")) {
@@ -372,45 +371,6 @@
 		</div>
         <div id="mobile-schedule-brand" class="mb-25">
           <div class="" style="color: #fff; text-align: center; padding-left: 0; font-size: 15px;">中銀人壽香港超級聯賽</div>
-          <!--<div class="brand-row">
-            <div class="brand-col today brand-title">今日</div>
-            <div class="brand-col brand-info">
-              <p class="brand-text-box">
-                <span class="left-team">南華</span>
-                <span class="score">1 - 2</span>
-                <span class="right-team">傑志傑志</span>
-              </p>
-            </div>
-            <div class="brand-col show-score">
-              <span>62:35</span>
-            </div>
-          </div>
-          <div class="brand-row">
-            <div class="brand-col brand-title">明日</div>
-            <div class="brand-col brand-info">
-              <p class="brand-text-box">
-                <span class="left-team">南華</span>
-                <span class="score">17:00</span>
-                <span class="right-team">傑志傑志</span>
-              </p>
-            </div>
-            <div class="brand-col show-score">
-              <span>62:35</span>
-            </div>
-          </div>
-          <div class="brand-row">
-            <div class="brand-col brand-title">後日</div>
-            <div class="brand-col brand-info">
-              <p class="brand-text-box">
-                <span class="left-team">南華</span>
-                <span class="score">17:00</span>
-                <span class="right-team">傑志傑志</span>
-              </p>
-            </div>
-            <div class="brand-col show-score">
-              <span>62:35</span>
-            </div>
-          </div>-->
         </div>
 
 				<!-- # 3Post -->
@@ -436,40 +396,6 @@
 			</div>
 		    <div id="schedule-brand" class="mb-25">
           <div class="" style="color: #fff; text-align: center; padding-left: 0; font-size: 15px;">中銀人壽香港超級聯賽</div>
-		      <!--<div class="brand-row">
-		        <div class="today brand-title">今日</div>
-		        <div class="brand-info">
-		          <p class="brand-text-box">
-		            <span class="left-team">南華 <img src="{text:External Resource}images/brand_logo.jpg" class="team-logo" alt="" /></span>
-		            <span class="score">1 - 2</span>
-		            <span class="right-team">傑志傑志 <img src="{text:External Resource}images/brand_logo.jpg" class="team-logo" alt="" /></span>
-		          </p>
-		          <div class="show-end">
-		            <b>已經結束</b>
-		            <span>球賽時間 93分鐘</span>
-		          </div>
-		        </div>
-		      </div>
-		      <div class="brand-row">
-		        <div class="brand-title">明日</div>
-		        <div class="brand-info">
-		          <p class="brand-text-box">
-		            <span class="left-team">南華 <img src="{text:External Resource}images/brand_logo.jpg" class="team-logo" alt="" /></span>
-		            <span class="score">17:00</span>
-		            <span class="right-team">傑志傑志 <img src="{text:External Resource}images/brand_logo.jpg" class="team-logo" alt="" /></span>
-		          </p>
-		        </div>
-		      </div>
-		      <div class="brand-row">
-		        <div class="brand-title">後日</div>
-		        <div class="brand-info">
-		          <p class="brand-text-box">
-		            <span class="left-team">南華 <img src="{text:External Resource}images/brand_logo.jpg" class="team-logo" alt="" /></span>
-		            <span class="score">17:00</span>
-		            <span class="right-team">傑志傑志 <img src="{text:External Resource}images/brand_logo.jpg" class="team-logo" alt="" /></span>
-		          </p>
-		        </div>
-		      </div>-->
 		    </div>
 		    {/block:IndexPage}
 
