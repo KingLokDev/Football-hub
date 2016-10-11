@@ -326,12 +326,15 @@
 									//desktop_html = desktop_html.replace(/#score_or_time#/g, match.match_time);
 									//mobile_html = mobile_html.replace(/#score_or_time#/g, match.match_time);
 								}
-
+console.log(live_match_id_oncc);
 								var desktop_row = $($.trim(desktop_html)).appendTo(desktop_schedule),
 									mobile_row = $($.trim(mobile_html)).appendTo(mobile_schedule);
 								if($.inArray(match.match_id.toString(), window.live_match_id) > -1 && match.status_id!=="1" && match.status_id!=="2" && match.status_id!=="3" && match.status_id!=="4") {
 									desktop_row.find('.show-end b').html("Yahoo首頁<br>全程直播！").css({'color':'red'});
 									mobile_row.find('.show-score span').html("Yahoo首頁<br>全程直播！").css({'color':'red'});
+								} else if($.inArray(match.match_id.toString(), window.live_match_id_oncc) > -1 && match.status_id!=="1" && match.status_id!=="2" && match.status_id!=="3" && match.status_id!=="4") {
+									desktop_row.find('.show-end b').html("東網<br>全程直播！").css({'color':'red'});
+									mobile_row.find('.show-score span').html("東網<br>全程直播！").css({'color':'red'});
 								} else if(typeof match.live === 'undefined' || (typeof match.live !== 'undefined' && match.live!="1")) {
 									desktop_row.find('.show-end').css({'visibility': 'hidden'});
 									mobile_row.find('.show-score span').css({'visibility': 'hidden'});
