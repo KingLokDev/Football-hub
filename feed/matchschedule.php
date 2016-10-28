@@ -21,12 +21,14 @@
 			$half_point = explode(':', $basic['half_point']);
 			$home_team = array(
 				'id' => $basic['home_team_id'],
+				'club_id' => $basic['home_club_id'],
 				'name' => $basic['home_team'],
 				'final_point' => intval($final_point[0]),
 				'half_point' => intval($half_point[0])
 			);
 			$guest_team = array(
 				'id' => $basic['guest_team_id'],
+				'club_id' => $basic['guest_club_id'],
 				'name' => $basic['guest_team'],
 				'final_point' => intval($final_point[1]),
 				'half_point' => intval($half_point[1])

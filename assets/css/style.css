@@ -830,7 +830,12 @@ textarea {
 
 .rank-member-table .member-info,
 .rank-member-table .member-name {
-  width: 47.5%;
+  width: 35.5%;
+}
+.rank-member-table .member-yellowcard,
+.rank-member-table .member-redcard,
+.rank-member-table .member-goal {
+	width: 8%;
 }
 
 span.rabk-member-ps {

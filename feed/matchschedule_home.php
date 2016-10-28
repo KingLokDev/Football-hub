@@ -20,10 +20,12 @@ header('Access-Control-Allow-Methods: GET, POST');
 				'match_date' => $match['date'],
 				'home_team' => array(
 					'id' => $match['home_team']['id'],
+					'club_id' => $match['home_team']['club_id'],
 					'name' => $match['home_team']['name']
 				),
 				'guest_team' => array(
 					'id' => $match['guest_team']['id'],
+					'club_id' => $match['guest_team']['club_id'],
 					'name' => $match['guest_team']['name']
 				)
 			);

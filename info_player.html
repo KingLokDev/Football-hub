@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-Hans-HK">
+<head>
+  <meta charset="UTF-8">
+  <title>Yahoo 體育 - 港超聯</title>
+  	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  	<meta name="description" content="撐本地足球，提供港超聯直播、賽事精華、球會簡介及相關新聞。">
+    <meta name="keywords" content="港超聯, 港超聯直播, 賽事精華, 南華, 東方, 傑志, 飛馬, 南區, 流浪, 銀牌, 本地波, 香港足球, 香港隊">
+    <link rel="shortcut icon" href="https://s.yimg.com/rz/l/favicon.ico">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//static.tumblr.com/3yh6fjw/cnlocbhkl/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="//static.tumblr.com/3yh6fjw/YyTocbhkg/bootstrap-theme.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script type="text/javascript" src="//static.tumblr.com/vexeq8y/tJWnlzwcq/jquery.js"></script>
+  <script src="//static.tumblr.com/3yh6fjw/pAyocbhkg/bootstrap.min.js"></script>
+  <script type="text/javascript" src="//static.tumblr.com/3yh6fjw/ZJYocbhkh/nav.js"></script>
+  <script type="text/javascript" src="//static.tumblr.com/vexeq8y/voEnlzwbm/plugins.js"></script>
+  <script type="text/javascript">
+  	//jquery-visible
+  	!function(t){var i=t(window);t.fn.visible=function(t,e,o){if(!(this.length<1)){var r=this.length>1?this.eq(0):this,n=r.get(0),f=i.width(),h=i.height(),o=o?o:"both",l=e===!0?n.offsetWidth*n.offsetHeight:!0;if("function"==typeof n.getBoundingClientRect){var g=n.getBoundingClientRect(),u=g.top>=0&&g.top<h,s=g.bottom>0&&g.bottom<=h,c=g.left>=0&&g.left<f,a=g.right>0&&g.right<=f,v=t?u||s:u&&s,b=t?c||a:c&&a;if("both"===o)return l&&v&&b;if("vertical"===o)return l&&v;if("horizontal"===o)return l&&b}else{var d=i.scrollTop(),p=d+h,w=i.scrollLeft(),m=w+f,y=r.offset(),z=y.top,B=z+r.height(),C=y.left,R=C+r.width(),j=t===!0?B:z,q=t===!0?z:B,H=t===!0?R:C,L=t===!0?C:R;if("both"===o)return!!l&&p>=q&&j>=d&&m>=L&&H>=w;if("vertical"===o)return!!l&&p>=q&&j>=d;if("horizontal"===o)return!!l&&m>=L&&H>=w}}}}(jQuery);
+  		
+  	function getParameterByName(a,b){b||(b=window.location.href),a=a.replace(/[\[\]]/g,"\\$&");var c=new RegExp("[?&]"+a+"(=([^&#]*)|&|#|$)"),d=c.exec(b);return d?d[2]?decodeURIComponent(d[2].replace(/\+/g," ")):"":null}
+  </script>
+
+  
+  <link rel="stylesheet" href="//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/css/style.css" charset="utf-8">
+
+  <script type="text/javascript" src="//yahoo-promotion.myguide.hk/tumblr/football-hub/assets/js/script.js"></script>
+
+  <style>
+  	a {text-decoration: none !important;}
+  	.club-info-link {width: 100%; height: 100%; display: block; position: relative; z-index: 100;}
+  	.rank-item {display: block;}
+  	.rank-item:hover:before {z-index: 9999;}
+
+  	.rank-item .item-logo {
+  		background-size: 50% auto;
+  		background-position: center;
+  		background-repeat: no-repeat;
+  	}
+
+  	.rank-item .item-logo::after {
+  		display: block;
+  		content: '';
+  		padding-top: 100%;
+  	}
+  	.rank-foto {
+  		float: none;
+  		width: 100%;
+  	}
+
+  	.rank-detail-box {
+	    width: 100%;
+	    height: auto;
+	    background: #252525;
+	    margin-left: 0;
+		}
+
+		.rank-logo {
+	    display: table-cell;
+	    max-width: 200px;
+	    width: 40%;
+	    height: auto;
+	    vertical-align: middle;
+	    background-size: 70% auto;
+	    background-repeat: no-repeat;
+	    background-position: center;
+		}
+		.rank-logo::after {
+	    content: '';
+	    display: block;
+	    padding-top: 100%;
+		}
+
+		.rank-detail-box .rank-detail {
+	    padding: 10px;
+	    padding-top: 0;
+	    vertical-align: middle;
+	    display: table;
+	    width: 100%;
+	    min-height: 195px;
+	    box-sizing: border-box;
+		}
+    .club-info-link-new {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999999;
+      display: block;
+      width: 88%;
+      height: 90%;
+      margin: 0 auto;
+    }
+    .club-info-link-new:before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border: 2px solid #ed1c24;
+      background: rgba(0, 0, 0, 0.6) url(https://yahoo-promotion.myguide.hk/tumblr/football-hub/assets/images/item_hove.png) no-repeat center;
+      z-index: 10;
+      opacity: 0;
+      transition: all .5s ease;
+    }
+    .club-info-link-new:hover:before {
+      opacity: 1;
+    }
+
+		.rank-brief {float: none;}
+		
+		#club-detail-container li {background-color: transparent !important; }
+		#club-detail-container li a { border: 0 none; background-color: transparent; font-size: 40px; line-height: 1.1; color: #666; border-right: 1px #fff solid; border-radius: 0; margin-bottom: 5px; padding: 0px 15px;}
+		#club-detail-container li:last-child a { border-right: 0;}
+		#club-detail-container li.active a, #club-detail-container li a:hover { color: #fff; }
+		
+		/* News section */
+		#flow-posts.post-list-container {
+			margin-top: 15px;
+		}
+		#flow-posts.post-list-container article {
+			width: 25%; 
+			padding: 0 8px 16px;
+		}
+		#flow-posts.post-list-container article .media-author .logo img {max-height: 45px; width: auto;}
+		
+		#player-info .player-avator center img {
+			width: auto;
+		}
+		#player-info {
+			color: #fff;
+			margin-bottom: 50px;
+		}
+		#player-info h3 {
+			margin-bottom: 15px; 
+			font-size: 24px; 
+		}
+		#player-info .player-info-row {
+			margin-bottom: 7px;
+		}
+		
+		#player-info .player-personal-info,
+		#player-info .player-match-info {
+			padding-top: 30px;
+			font-size: 16px;
+		}
+		
+		.smaller {font-size: 12px;}
+		.player-personal-info,
+		.player-match-info {
+			background-color: #252525;
+	    min-height: 250px;
+		}
+		
+		body.loading {
+			position: fixed; 
+			top: 0;
+			bottom: 0;
+			height: 100%; 
+			width: 100%; 
+			left: 0;
+			right: 0;
+		}
+		#loading {
+			background:#000 url("https://yahoo-promotion.myguide.hk/tumblr/football-hub/assets/images/balls.gif") no-repeat center;
+			background-size: auto;
+			height: 100%; 
+			width: 100%; 
+			position: absolute; 
+			z-index: 99999;
+		}
+		@media screen and (min-width: 992px) {
+			#player-info .player-personal-info, 
+			#player-info .player-match-info {
+		    margin-right: 10px;
+				width: calc(33.33% - 10px);
+			}
+			
+		}
+		@media screen and (max-width: 991px) {
+			#player-info .player-personal-info, 
+			#player-info .player-match-info {
+				width: 90%;
+		    margin: 10px auto 0;
+		    padding: 10px;
+		    min-height: 0;
+			}
+			.player-match-info {
+				margin-left: 0; 
+			}
+			
+			#player-info h3 {
+				background-color: #ed1c24;
+				text-align: center;
+				line-height: 1.4;
+			}
+			.player-info-key {
+				text-align: right;
+			}
+		}
+		/* News section */
+		@media screen and (max-width: 767px) {
+			#club-detail-container li a {font-size: 24px;}
+			#flow-posts.post-list-container article {
+				width: 100%; 
+				padding: 0 15px 16px;
+			}
+			
+		}
+  </style>
+</head>
+<body class="loading">
+		<div id="loading"></div>
+    <div id="output"></div>
+  <div id="wrapper">
+
+    <div id="header">
+    	<div id="slider-nav" class=""></div>
+			<a href="#" id="burger-navi" class="">
+			 <span class="top"></span>
+			 <span class="middle"></span>
+			 <span class="bottom"></span>
+			</a>
+       <div class="center">
+         <a href="#" target="_blank" class="y-logo"></a>
+         <div class="slogan"></div>
+         <ol class="poster-link">
+           <li class="poster-facebook"><a href="#"></a></li>
+           <li class="poster-tumblr"><a href="#"></a></li>
+         </ol>
+       </div>
+    </div>
+
+    <!-- #導覽列 -->
+    <div id="navigation" class="clearfix"></div>
+
+    <!-- #當前比賽 -->
+    <div id="current-football">
+      <div class="center">
+        <p class="current-txt">直播中  - 南華 vs 傑志</p>
+        <div class="btn-watch"><a href="#"></a></div>
+      </div>
+    </div>
+
+
+    <!-- #主要內容 -->
+    <div id="container">
+      <div class="inner">
+      	<div id="player-info" class="container"><div class="row">
+      		<div class="col-md-3 player-avator"><center></center></div>
+      		<div class="col-md-4 player-personal-info"><h3>個人資料</h3></div>
+      		<div class="col-md-4 player-match-info"><h3>賽事數據</h3></div>
+      	</div></div>
+      	
+      	<div id="player-news" class="">
+      		<div id="flow-posts" class="post-list-container grid"></div>
+      		<a href="javascript:;" class="load-more" style="display: block;"></a><!-- Load more-->
+      	</div>
+      </div>
+    </div>
+  </div>
+  
+  <template id="template-common-post-item" style="display: none;">
+		<div class="post-item">
+	    <div class="post-foto-box">
+	      <a href="__postPermalink__" target="_blank" class="post-foto">__postThumbnail__</a>
+	      <a href="__authorLink__" target="_blank" class="media-author">
+	        <div class="logo">__authorLogo__</div>
+	        <span class="name">__authorName__</span>
+	      </a>
+	    </div>
+	    <div class="post-text">
+	      <a href="__postPermalink__" target="_blank"><h3>__postTitle__</h3></a>
+	      <a href="__postPermalink__" target="_blank"><span class="post-txt">__postShortDesc__</span></a>
+	      <div class="post-tools">
+	        <span class="notes">__postNote__ notes</span>
+	        <ol class="tools">
+	          __socialTools__
+	        </ol>
+	      </div>
+	    </div>
+	  </div>
+	</template>
+  
+  <script type="text/javascript">
+  	window.allow_retrieve_post = true;
+  	var unique_id = getParameterByName("unique_id");
+  	
+  	var more_article_limit = 10;
+  	var more_article_offset = 0;
+  	
+  	$('document').ready(function() {
+  		var is_club_info = (getParameterByName("club_id")!==null) ? true : false;
+  		var feed = '//yahoo-promotion.myguide.hk/tumblr/football-hub/feed/club_player.php?club_id=' + getParameterByName("club_id") + '&unique_id=' + getParameterByName("unique_id") + '&player_id=' + getParameterByName("player_id");
+  		$.ajax({
+        url: feed,
+        method:'GET',
+  			dataType: 'jsonp',
+  			jsonp: "callback",
+        success: function(result) {
+    			load_player_info(result);
+    			$('#loading').remove();
+    			$('body').removeClass('loading');
+    		}
+      });
+      $('.grid').masonry().imagesLoaded().progress(function() {
+				$('.grid').masonry()
+			});
+			
+			/* News section */
+			$(document).on('click', ".inner [href=#club-news]", function() {
+				if($('.grid article').length == 0) {
+					get_club_news();	
+				}
+				var change_tab = setInterval(function() {
+					if($('#club-news').hasClass('in') && $('#club-news').hasClass('active')) {
+						$('.grid').masonry();
+						window.clearInterval('change_tab');
+					}
+				},100);
+			});
+			/* News section */
+      
+  	});
+
+  	function load_player_info(result) {
+  		//console.log(result);
+  		if(typeof result==='object') {
+  			if(typeof result.club_list==='object' && typeof result.club_list.data==='object' && result.club_list.data.length > 0) {
+  				var club_info = result.club_list.data[0];
+  				if(typeof club_info.player==='object' && club_info.player.length > 0) {
+  					var player_info = club_info.player[0];
+  					var _avator = player_info.photo || "https://yahoo-promotion.myguide.hk/tumblr/football-hub/assets/images/f3.jpg";
+  					
+  					var _name = player_info.name || "-";
+  					var _age = player_info.age || "-";
+  					var _dob = player_info.dob || "-";
+  					var _height = player_info.height || "-";
+  					var _weight = player_info.weight || "-";
+  					
+  					var _club = club_info.name || club_info.fullname || "";
+  					var _red = player_info.red_card || 0;
+  					var _yellow = player_info.yellow_card || 0;
+  					var _position = (player_info.position && player_info.position.trim()!=="" ?player_info.position :"-");
+  					var _goal = player_info.goal || "-";
+  					
+  					window.search_tag = _club+_name;
+  					console.log(search_tag);
+  					window.search_tag = "港超聯";
+  					load_more_article();
+  					$('.player-avator > center').append('<img src="'+_avator+'" width="auto" height="250px" />');
+  					
+  					$('.player-personal-info').append('<div class="row player-info-row"><div class="col-xs-6 col-sm-3 player-info-key">姓名 : </div><div class="col-xs-6 col-sm-8">'+_name+'</div></div>');
+  					$('.player-personal-info').append('<div class="row player-info-row"><div class="col-xs-6 col-sm-3 player-info-key">身高 : </div><div class="col-xs-6 col-sm-8">'+_height + (_height!=="" ?" m" : "") + '</div></div>');
+  					$('.player-personal-info').append('<div class="row player-info-row"><div class="col-xs-6 col-sm-3 player-info-key">體重 : </div><div class="col-xs-6 col-sm-8">'+_weight + (_weight!=="" ?" kg" :"") + '</div></div>');
+  					$('.player-personal-info').append('<div class="row player-info-row"><div class="col-xs-6 col-sm-3 player-info-key">生日 : </div><div class="col-xs-6 col-sm-8">'+_dob+'</div></div>');
+  					$('.player-personal-info').append('<div class="row player-info-row"><div class="col-xs-6 col-sm-3 player-info-key">年齡 : </div><div class="col-xs-6 col-sm-8">'+_age+'</div></div>');
+  					
+  					$('.player-match-info').append('<div class="row player-info-row"><div class="col-xs-6 col-sm-5 player-info-key">效力球隊 : </div><div class="col-xs-6 col-sm-7">'+_club+'</div></div>');
+  					$('.player-match-info').append('<div class="row player-info-row"><div class="col-xs-6 col-sm-5 player-info-key">位置 : </div><div class="col-xs-6 col-sm-7">'+_position+'</div></div>');
+  					$('.player-match-info').append('<div class="row player-info-row"><div class="col-xs-6 col-sm-5 player-info-key">入球 : </div><div class="col-xs-6 col-sm-7">'+_goal+'</div></div>');
+  					$('.player-match-info').append('<div class="row player-info-row"><div class="col-xs-6 col-sm-5 player-info-key">黃牌 : </div><div class="col-xs-6 col-sm-7">'+_yellow +'</div></div>');
+  					$('.player-match-info').append('<div class="row player-info-row"><div class="col-xs-6 col-sm-5 player-info-key">紅牌 : </div><div class="col-xs-6 col-sm-7">'+_red+'</div></div>');
+  					
+  					
+  				} else {
+  					$('#player-info').html("<center style='color: #fff;'>沒有相關球員資料!</center>");
+  				}
+  			}
+  		}
+  	}
+  	 
+
+  </script>
+
+	<!--<script>
+		var _gaq=[['_setAccount','UA-57166391-43'],['_trackPageview']];
+		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>-->
+
+	<!--Rapid start-->
+	<!--<script src="https://s.yimg.com/ss/rapid-3.36.1.js"></script>
+	<script src="https://s.yimg.com/ss/rapidworker-1.2.js"></script>
+	<script>
+	var conf = {spaceid:1197801442,pageview_on_init:true,client_only:1};
+	var ins = new YAHOO.i13n.Rapid(conf);
+	ins.init();
+	</script>-->
+
+</body>
+</html>

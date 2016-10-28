@@ -305,8 +305,8 @@
 								desktop_html = desktop_html.replace(/#time_text#/g, match.match_time);
 								desktop_html = desktop_html.replace(/#home_team_name#/g, match.home_team.name);
 								desktop_html = desktop_html.replace(/#home_team_id#/g, match.home_team.id);
-								desktop_html = desktop_html.replace(/#home_team_img#/g, '<img src="{text:External Resource}images/logo/logo_' + match.home_team.id + '.png" class="team-logo" alt="" />');
-								desktop_html = desktop_html.replace(/#guest_team_img#/g, '<img src="{text:External Resource}images/logo/logo_' + match.guest_team.id + '.png" class="team-logo" alt="" />');
+								desktop_html = desktop_html.replace(/#home_team_img#/g, '<img src="{text:External Resource}images/logo/logo_' + match.home_team.club_id + '.png" class="team-logo" alt="" />');
+								desktop_html = desktop_html.replace(/#guest_team_img#/g, '<img src="{text:External Resource}images/logo/logo_' + match.guest_team.club_id + '.png" class="team-logo" alt="" />');
 								desktop_html = desktop_html.replace(/#guest_team_id#/g, match.guest_team.id);
 								desktop_html = desktop_html.replace(/#guest_team_name#/g, match.guest_team.name);
 								

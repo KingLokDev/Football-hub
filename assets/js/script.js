@@ -3,7 +3,8 @@ var cli_title_text_limit = 30;
 var cli_desc_text_limit = 60;
 var live_match_id = new Array();
 var live_match_id_oncc = new Array();
-var blog_hostname = window.location.hostname;
+//var blog_hostname = window.location.hostname;
+var blog_hostname = "hkleague.tumblr.com";
 var tumblr_api_key = tumblr_api_key || "zipyXRiIyglyjlAnBcngTw5ifMs5T1VAsO6AUWUbik2Vz81fCz";
 var tmp_api_url = "//api.tumblr.com/v2/blog/"+blog_hostname+"/posts";
 var tumblr_blog_avator = "https://api.tumblr.com/v2/blog/__reblogFromName__.tumblr.com/avatar";
@@ -722,10 +723,12 @@ function get_thumbnail_from_api_array(arr) {
 function load_more_article() {
 	//console.log(window.more_article_offset + " | " + window.more_article_limit);
 	var tmp_tag = window.search_tag || "";
-	if(tmp_tag!=="#") {
-		get_post_from_api(tmp_tag, window.more_article_limit, window.more_article_offset, "load_more_article_callback");
-	}
-	window.more_article_offset += window.more_article_limit;
+	if(window.location.pathname.indexOf("info_user") < 0 || (tmp_tag!=="" && tmp_tag!=="#") ) {	// Checking
+		if(tmp_tag!=="#") {
+			get_post_from_api(tmp_tag, window.more_article_limit, window.more_article_offset, "load_more_article_callback");
+		}
+		window.more_article_offset += window.more_article_limit;
+	}	// Checking
 }
 
 function load_more_article_callback(data) {
